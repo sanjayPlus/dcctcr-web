@@ -216,10 +216,11 @@ function Rmc() {
         }
       )
       .then((res) => {
-        console.log(res);
+       toast.success("Registered Successfully");
+       setShowMessage(false);
       })
       .catch((err) => {
-        console.log(err);
+        toast.error("Already Registered");
       });
   };
   return (
