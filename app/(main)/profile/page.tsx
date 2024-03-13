@@ -29,9 +29,15 @@ function Profile() {
         'x-access-token': localStorage.getItem("token")
       }
     }).then((response) => {
+if(response.data==null){
+  localStorage.removeItem('token');
+  router.push('/login');
+}
       setProfile(response.data)
     }).catch((error) => {
       console.log(error)
+      localStorage.removeItem('token');
+      router.push('/login');
     })
 
   }, [state]);
@@ -114,9 +120,9 @@ function Profile() {
           <div className="profile-card w-[90%] flex flex-col  items-center bg-white rounded-lg shadow-lg mt-9 mb-24 p-3 m-1" >
             <div className="flex flex-col justify-center items-center relative">
               <MdEdit className='text-2xl cursor-pointer absolute top-16 right-11 bg-white rounded-full shadow-md w-8 h-8 p-1' onClick={() => setProfileModel(true)} />
-              <img className="w-24 h-24 object-cover rounded-full" src={profile.profileImage ? profile.profileImage : '/images/profile.jpg'} />
-              <h3 className='text-lg font-semibold text-center mt-2'>{profile.name}</h3>
-              <p className='text-sm text-center'>{profile.email}</p>
+              <img className="w-24 h-24 object-cover rounded-full" src={profile?.profileImage ? profile.profileImage : '/images/profile.jpg'} />
+              <h3 className='text-lg font-semibold text-center mt-2'>{profile?.name}</h3>
+              <p className='text-sm text-center'>{profile?.email}</p>
             </div>
             <div className="max-w-2xl mx-auto justify-center items-start ">
               <table className="table-fixed border-separate border-spacing-2 p-3 ">

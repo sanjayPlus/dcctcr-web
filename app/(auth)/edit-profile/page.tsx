@@ -65,11 +65,12 @@ function EditProfile() {
                 setLocalSelect('corporation');
                 local1 = 'corporation'
             }
+           
             axios.get(SERVER_URL + '/admin/districtV4?district=' + response.data.district + '&constituency=' + response.data.district).then((res) => {
                 console.log(res.data)
                 setAssemblyList(res.data)
             })
-            axios.get(SERVER_URL + '/admin/districtV4?district=' + response.data.district + '&constituency=' + response.data.district + '&assembly=' + response.data.assembly + '&local=' +local1 ).then((res) => {
+            axios.get(SERVER_URL + '/admin/districtV4?district=' + response.data.district + '&constituency=' + response.data.district + '&assembly=' + response.data.assembly + '&local=' + local1).then((res) => {
                 console.log(res.data)
                 setLocalList(res.data)
             })
@@ -86,26 +87,36 @@ function EditProfile() {
         setLocalSelect(event.target.value);
         axios.get(SERVER_URL + '/admin/districtV4?district=' + district + '&constituency=' + district + '&assembly=' + assembly + '&local=' + event.target.value).then((response) => {
             setLocalList(response.data)
+
         })
     };
     useEffect(() => {
         axios.get(SERVER_URL + '/admin/districtV4').then((response) => {
             setDistrictList(response.data)
         });
-        axios.get(SERVER_URL + '/admin/mandalam').then((response) => {
+        axios.get(SERVER_URL + '/admin/districtV4'+'?district=' + district).then((response) => {
             setConstituencyList(response.data)
-        })
+        });
+
     }, [])
     const handleDistrictChange = (event: any) => {
         setDistrict(event.target.value);
-        axios.get(SERVER_URL + '/admin/districtV4?district=' + event.target.value + '&constituency=' + event.target.value).then((response) => {
-            setAssemblyList(response.data);
+        axios.get(SERVER_URL + '/admin/districtV4?district=' + event.target.value).then((response) => {
+            setConstituencyList(response.data)
             setLocalList([]);
             setLocal('')
             setLocalSelect(null)
         })
     }
 
+    const handleConstituencyChange = (event: any) => {
+        setConstituency(event.target.value);
+        axios.get(SERVER_URL + '/admin/districtV4?district=' + district + '&constituency=' + event.target.value).then((response) => {
+            setAssemblyList(response.data)
+            setLocal('')
+            setLocalSelect(null)
+        })
+    }
     const handleSubmit = (e: any) => {
         e.preventDefault();
 
@@ -129,7 +140,7 @@ function EditProfile() {
             municipality: municipality,
             corporation: corporation,
             union: union,
-        },{
+        }, {
             headers: {
                 'x-access-token': localStorage.getItem("token")
             }
@@ -145,54 +156,61 @@ function EditProfile() {
         })
 
     }
-
     return (
         <>
             <MobileContainer>
-                <div className="edit-profile w-full min-h-screen flex flex-col justify-start items-center relative" style={{ backgroundImage: "url('/images/bg_main.jpg')", backgroundSize: "cover" }}>
-                    <h1 className='text-black text-2xl text-center font-bold my-7 mt-14 mb-4 '>Edit Profile</h1>
-                    <MdArrowBackIosNew className='text-xl cursor-pointer absolute top-5 left-5 top-text' onClick={() => router.back()} />
-                    <div className='flex-1 w-full justify-center items-center bg-neutral-900 rounded-t-3xl mt-5'>
-                        <div className="input-container pt-10 pb-5 flex flex-col w-full justify-center items-center">
-                           {/*  */}
-                            <div style={{ width: "80%", height: "50px" }} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5">
-                                <FaUser size={24} color='white' />
-                                <input type="text" placeholder="Name" onChange={(e) => setData({ ...data, name: e.target.value })} value={data.name} className='bg-transparent border-none outline-none text-white pl-2 w-full' />
+                <div className="edit-profile w-full min-h-screen flex flex-col justify-start items-center relative " style={{ backgroundImage: "url('/images/backimg.jpeg')", backgroundSize: "cover" }}>
+                    <div className="SocialMedia-header w-full bg-white/100 mb-7 box-shodow-lg box-shagow-black flex flex-col  ">
+                        <MdArrowBackIosNew className='text-lg cursor-pointer absolute top-6 left-5 text-black z-50' onClick={() => router.back()} />
+                        <h1 className=' text-xl text-center font-bold mt-5 drop-shadow-lg text-black mb-4'>Edit Profile</h1>
+                    </div>
+                    <div className='flex-1 w-[90%] justify-center items-center bg-white rounded-3xl m-5 '>
+                        <div className="input-container pt-10 pb-5 flex flex-col w-full justify-center items-center ">
+                            
+                            {/*  */}
+                            <div style={{ width: "80%", height: "50px" }} className="my-3 rounded-lg flex justify-start items-center border border-black pl-5">
+                                <FaUser size={24} color='black' />
+                                <input type="text" placeholder="Name" onChange={(e) => setData({ ...data, name: e.target.value })} value={data.name} className='bg-transparent border-none outline-none text-black pl-2 w-full' />
                             </div>
                             {/*  */}
-                            <div style={{ width: "80%", height: "50px" }} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5">
-                                <FaPhone size={24} color='white' />
-                                <input type="number" placeholder="Phone Number" onChange={(e) => setData({ ...data, phone: e.target.value })} value={data.phone} className='bg-transparent border-none outline-none text-white pl-2 w-full' />
+                            <div style={{ width: "80%", height: "50px" }} className="my-3 rounded-lg flex justify-start items-center border border-black pl-5">
+                                <FaPhone size={24} color='black' />
+                                <input type="number" placeholder="Phone Number" onChange={(e) => setData({ ...data, phone: e.target.value })} value={data.phone} className='bg-transparent border-none outline-none text-black pl-2 w-full' />
                             </div>
-                            <div style={{ width: '80%', height: '50px' }} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5">
-                                <FaGift size={24} color="white" className="mr-2" />
+                            <div style={{ width: '80%', height: '50px' }} className="my-3 rounded-lg flex justify-start items-center border border-black pl-5">
+                                <FaGift size={24} color="black" className="mr-2" />
                                 <ReactDatePicker
                                     selected={selectedDate}
                                     onChange={handleDateChange}
                                     placeholderText="Birthday"
                                     dateFormat="MM/dd/yyyy"
 
-                                    className="text-white bg-transparent border-none outline-none w-full"
+                                    className="text-black bg-transparent border-none outline-none w-full"
                                 />
                             </div>
 
-
-                            <select id="constituency" onChange={(e) => setConstituency(e.target.value)} style={{ width: '80%', height: '50px' }} value={constituency} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5 bg-neutral-900 text-white">
-                                <option selected value="">Loka Sabha</option>
-                                {constituencyList?.map((constituency: any) => (
-                                    <option key={constituency._id} value={constituency.mandalam}>{constituency.mandalam}</option>
-                                ))}
-                            </select>
-                            <select id="district" onChange={handleDistrictChange} style={{ width: '80%', height: '50px' }} value={district} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5 bg-neutral-900 text-white">
+                            <select id="district" onChange={handleDistrictChange} style={{ width: '80%', height: '50px' }} value={district} className="my-3 rounded-lg flex justify-start items-center border border-black pl-5 bg-white text-black">
                                 <option selected value="">District</option>
                                 {districtList?.map((district) => (
                                     <option key={district} value={district}>{district}</option>
                                 ))}
                             </select>
                             {
+                                constituencyList.length > 0 && (
+                                    <>
+                                        <select id="constituency" onChange={handleConstituencyChange} style={{ width: '80%', height: '50px' }} value={constituency} className="my-3 rounded-lg flex justify-start items-center border border-black pl-5 bg-white text-black">
+                                            <option selected value="">Loka Sabha</option>
+                                            {constituencyList?.map((constituency: any) => (
+                                                <option key={constituency} value={constituency}>{constituency}</option>
+                                            ))}
+                                        </select>
+                                    </>
+                                )
+                            }
+                            {
                                 assemblyList.length > 0 && (
                                     <>
-                                        <select id="assembly" onChange={(e) => setAssembly(e.target.value)} value={assembly} style={{ width: '80%', height: '50px' }} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5 bg-neutral-900 text-white">
+                                        <select id="assembly" onChange={(e) => setAssembly(e.target.value)} value={assembly} style={{ width: '80%', height: '50px' }} className="my-3 rounded-lg flex justify-start items-center border border-black pl-5 bg-white text-black">
                                             <option selected value="">Legislative Assembly</option>
                                             {
                                                 assemblyList?.map((assembly: any) => (
@@ -204,65 +222,72 @@ function EditProfile() {
                                 )
                             }
 
-                            <div className='w-full'>
-                                <label htmlFor="panchayath" className='flex pl-10 text-white'>
-                                    <input
-                                        type="radio"
-                                        id="panchayath"
-                                        value="panchayath"
-                                        checked={localSelect === 'panchayath'}
-                                        onChange={handleRadioChange}
-                                        className="mr-2"
-                                    />
-                                    <p className='text-white'>Panchayath</p>
-                                </label>
-
-                                <label htmlFor="municipality" className='flex pl-10 text-white'>
-                                    <input
-                                        type="radio"
-                                        id="municipality"
-                                        value="municipality"
-                                        checked={localSelect === 'municipality'}
-                                        onChange={handleRadioChange}
-                                        className="mr-2"
-                                    />
-                                    <p className='text-white'>Municipality</p>
-                                </label>
-
-                                <label htmlFor="corporation" className='flex pl-10 text-white'>
-                                    <input
-                                        type="radio"
-                                        id="corporation"
-                                        value="corporation"
-                                        checked={localSelect === 'corporation'}
-                                        onChange={handleRadioChange}
-                                        className="mr-2"
-                                    />
-                                    <p className='text-white'>Corporation</p>
-                                </label>
-                            </div>
                             {
-                                localList.length > 0 && (
+                                assemblyList.length > 0 && (
                                     <>
-                                        <select id="local" onChange={(e) => setLocal(e.target.value)} value={local} style={{ width: '80%', height: '50px' }} className="my-3 rounded-lg flex justify-start items-center border-2 border-white pl-5 bg-slate-900 text-white">
-                                            <option selected>{localSelect}</option>
-                                            {
-                                                localList?.map((loc: any, index: any) => (
-                                                    <option key={index} value={loc}>{loc}</option>
-                                                ))
-                                            }
+                                        <div className='w-full mx-5 px-5'>
+                                            <label htmlFor="panchayath" className='flex pl-10 text-black'>
+                                                <input
+                                                    type="radio"
+                                                    id="panchayath"
+                                                    value="panchayath"
+                                                    checked={localSelect === 'panchayath'}
+                                                    onChange={handleRadioChange}
+                                                    className="mr-2"
+                                                />
+                                                <p className='text-black'>Panchayath</p>
+                                            </label>
 
-                                        </select>
+                                            <label htmlFor="municipality" className='flex pl-10 text-black'>
+                                                <input
+                                                    type="radio"
+                                                    id="municipality"
+                                                    value="municipality"
+                                                    checked={localSelect === 'municipality'}
+                                                    onChange={handleRadioChange}
+                                                    className="mr-2"
+                                                />
+                                                <p className='text-black'>Municipality</p>
+                                            </label>
+
+                                            <label htmlFor="corporation" className='flex pl-10 text-black'>
+                                                <input
+                                                    type="radio"
+                                                    id="corporation"
+                                                    value="corporation"
+                                                    checked={localSelect === 'corporation'}
+                                                    onChange={handleRadioChange}
+                                                    className="mr-2"
+                                                />
+                                                <p className='text-black'>Corporation</p>
+                                            </label>
+                                        </div>
+                                        {
+                                            localList.length > 0 && (
+                                                <>
+                                                    <select id="local" onChange={(e) => setLocal(e.target.value)} value={local} style={{ width: '80%', height: '50px' }} className="my-3 rounded-lg flex justify-start items-center border border-black pl-5 bg-white text-black">
+                                                        <option selected>{localSelect}</option>
+                                                        {
+                                                            localList?.map((loc: any, index: any) => (
+                                                                <option key={index} value={loc}>{loc}</option>
+                                                            ))
+                                                        }
+
+                                                    </select>
+                                                </>
+                                            )
+                                        }
+
+
+
                                     </>
                                 )
                             }
 
-
-
                         </div>
-                        <div className='w-full flex justify-center items-center my-5'>
+                        <div className='w-full flex justify-center items-center '>
 
-                            <button onClick={handleSubmit} className='bg-white text-blue-800 w-80 text-xl py-2 rounded-xl font-semibold '>Update</button>
+                            <button onClick={handleSubmit} className='bg-indigo-900 text-white w-80 text-xl m-7  py-2 rounded-xl font-semibold '>Update</button>
                         </div>
 
                     </div>

@@ -41,6 +41,8 @@ function Rmc() {
   const [boothList, setBoothList] = useState([]);
   const [boothRule, setBoothRule] = useState<any[]>([]);
   const [userData, setUserData] = useState<any>({});
+  const [power,setPower] = useState("");
+  const [showMessage, setShowMessage] = useState(true);
   const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -65,6 +67,12 @@ function Rmc() {
             setUserData(response.data);
             setDistrict(response.data.district);
             setConstituency(response.data.assembly);
+            if(response.data.volunteer.applied){
+                setShowMessage(false);
+            }
+            if(response.data.volunteer.status){
+              router.push('/');
+            }
             axios
               .get(
                 `${VOLUNTEER_URL}/admin/state-districtV1?district=${response.data.district}&constituency=${response.data.assembly}`,
@@ -174,6 +182,18 @@ function Rmc() {
   };
   const handleSubmit = (e: any) => {
     e.preventDefault();
+    if(!power){
+      toast.error("Please Select Power");
+      return;
+    }
+    if(!booth){
+      toast.error("Please Select Booth");
+      return;
+    }
+    if(!assembly){
+      toast.error("Please Select Mandalam");
+      return;
+    }
     const token = localStorage.getItem("token");
     axios
       .post(
@@ -187,6 +207,7 @@ function Rmc() {
           booth,
           boothRule: [booth],
           constituency: constituency,
+          power:power,
         },
         {
           headers: {
@@ -214,9 +235,10 @@ function Rmc() {
           className="text-2xl cursor-pointer absolute top-5 left-5 top-text"
           onClick={() => router.back()}
         />
-
-        <h1 className="text-2xl text-center font-bold my-7 top-text d3 text-black">
-          Add Volunteer
+{
+    showMessage?<>
+         <h1 className="text-2xl text-center font-bold my-7 top-text d3 text-black">
+           Register as DMC Member
         </h1>
         <div className="flex   justify-center items-center bg-white p-6 m-4 rounded-3xl h-min shadow-xl shadow-black ">
           <div className="input-container  pb-5 flex flex-col w-full justify-center items-center ">
@@ -262,6 +284,25 @@ function Rmc() {
             </div> */}
             <div className="max-w-sm mx-auto">
               <label
+                htmlFor="power"
+                className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+              >
+                Select Task Force
+              </label>
+              <select
+                id="power"
+                onChange={(e) => setPower(e.target.value)}
+                className="bg-gray-50 mb-2 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-900 focus:border-blue-900 block w-full p-3 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-800 dark:focus:border-blue-900"
+              >
+                <option>Select an option</option>
+                <option value="DTF">DTF</option>
+                <option value="ATF">ATF</option>
+                <option value="MTF">MTF</option>
+                <option value="BTF">BTF</option>
+              </select>
+            </div>
+            <div className="max-w-sm mx-auto">
+              <label
                 htmlFor="assembly"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
               >
@@ -295,7 +336,7 @@ function Rmc() {
                 <option>Select an option</option>
                 {boothList.map((booth: any) => (
                   <option key={booth} value={booth.number}>
-                    {booth.number} {booth.name}
+                    {booth.number}
                   </option>
                 ))}
               </select>
@@ -343,6 +384,18 @@ function Rmc() {
             </div>
           </div>
         </div>
+    </>:<>
+    <h1 className="text-2xl text-center font-bold my-7 top-text d3 text-black">
+           Register as DMC Member
+        </h1>
+        <div className="flex   justify-center items-center bg-white p-6 m-4 rounded-3xl h-min shadow-xl shadow-black ">
+            <h1>
+              We Will Update Your Status Within 48 hours
+            </h1>
+        </div>
+    </>
+}
+   
       </div>
     </MobileContainer>
   );
