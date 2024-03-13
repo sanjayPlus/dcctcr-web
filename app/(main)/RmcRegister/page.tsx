@@ -67,7 +67,7 @@ function Rmc() {
             setConstituency(response.data.assembly);
             axios
               .get(
-                `${VOLUNTEER_URL}/admin/state-districtV1?district=${district}&constituency=${response.data.assembly}`,
+                `${VOLUNTEER_URL}/admin/state-districtV1?district=${response.data.district}&constituency=${response.data.assembly}`,
                 {
                   // Use the updated district value
                   headers: { "x-access-token": localStorage.getItem("token") },
