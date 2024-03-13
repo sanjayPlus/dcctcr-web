@@ -54,10 +54,7 @@ function Rmc() {
         },
       })
       .then((res) => {
-        if(res.status === 200){
-          router.push("/login");
-          localStorage.removeItem("token");
-        }
+     
         axios
           .get(SERVER_URL + "/user/details", {
             headers: {
@@ -69,26 +66,26 @@ function Rmc() {
             setDistrict(response.data.district);
             setConstituency(response.data.assembly);
             axios
-      .get(
-        `${VOLUNTEER_URL}/admin/state-districtV1?district=${district}&constituency=${response.data.assembly}`,
-        {
-          // Use the updated district value
-          headers: { "x-access-token": localStorage.getItem("token") },
-        }
-      )
-      .then((userResponse) => {
-        if (userResponse.status === 200) {
-          setAssemblyList(userResponse.data);
-        }
-      })
-      .catch((err) => {
-        console.log(err.response.data);
-      });
+              .get(
+                `${VOLUNTEER_URL}/admin/state-districtV1?district=${district}&constituency=${response.data.assembly}`,
+                {
+                  // Use the updated district value
+                  headers: { "x-access-token": localStorage.getItem("token") },
+                }
+              )
+              .then((userResponse) => {
+                if (userResponse.status === 200) {
+                  setAssemblyList(userResponse.data);
+                }
+              })
+              .catch((err) => {
+                console.log(err.response.data);
+              });
           })
           .catch((error) => {
             console.log(error);
           });
-      })
+      });
   }, []);
   // useEffect(() => {
   // axios.get(SERVER_URL + "/admin/state-districtV1").then((res) => {
