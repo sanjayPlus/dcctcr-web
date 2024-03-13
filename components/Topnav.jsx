@@ -89,7 +89,7 @@ function Topnav() {
                 <div className="nav-items cursor-pointer flex flex-row justify-start items-center pl-2 gap-x-2 mt-10 border-b border-b-gray-400 pb-3" >
                     {/* <HiComputerDesktop size={22} /> */}
                     <img src="/images/imagecontri.png" className='w-[15%] h-[15%]' alt="" />
-                    <p className='m-0' style={{ userSelect: "none" }}>എന്റെ ബൂത്തിൽ കോൺഗ്രസ്</p>
+                    <p className='m-0' style={{ userSelect: "none" }}>എൻ്റെ ബൂത്തിൽ കോൺഗ്രസ്</p>
                 </div>
                 <div className="nav-items cursor-pointer flex flex-row justify-start items-center pl-2 gap-x-3 mt-6 border-b border-b-gray-400 pb-3" onClick={() => { router.push("/social-media") }}>
                     <HiComputerDesktop size={22} />
