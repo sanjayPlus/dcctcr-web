@@ -164,7 +164,7 @@ const [data,setData] = useState<any>({})
                           type="button"
                           className="bg-amber-500 rounded-xl p-2 text-white w-28 font-semibold"
                         >
-                          see more
+                          See more
                         </button>
                       </a>
                     </div>
@@ -211,7 +211,7 @@ const [data,setData] = useState<any>({})
                         type="button"
                         className="bg-amber-500 rounded-xl p-2 text-white w-28 font-semibold"
                       >
-                        see more
+                        See more
                       </button>
                     </a>
                   </div>
@@ -258,7 +258,7 @@ const [data,setData] = useState<any>({})
                        type="button"
                        className="bg-amber-500 rounded-xl p-2 text-white w-28 font-semibold"
                      >
-                       see more
+                       See more
                      </button>
                    </a>
                  </div>
@@ -306,7 +306,7 @@ const [data,setData] = useState<any>({})
                        type="button"
                        className="bg-amber-500 rounded-xl p-2 text-white w-28 font-semibold"
                      >
-                       see more
+                       See more
                      </button>
                    </a>
                  </div>
