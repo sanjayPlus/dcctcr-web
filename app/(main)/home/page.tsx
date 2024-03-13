@@ -39,7 +39,7 @@ function Home() {
 
             if (permission === "granted") {
                 if (messaging) {  // Check if messaging is not null
-                    const newToken = await getToken(messaging, { vapidKey: "BOiHJOdgnKQB3FdDSSuK5kY8yPw6lBhLYNpUxvUovc4Zv5eIwNFnir_V3g7WRyEN9baMRbR4Ll5BcPdQBYCt3Fo" });
+                    const newToken = await getToken(messaging, { vapidKey: "BEVCM2zy9OhN7Udc_U0X1jubP85nXoB__OdXxJGD73Fw79vHdslLEvlyNfr3Q1UwGO9At4CIEDywICPVl8yDaQE" });
                     console.log(newToken);
                     setToken(newToken);
 
