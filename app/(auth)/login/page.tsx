@@ -116,7 +116,7 @@ function Login() {
                                     <MdOutlineMailOutline size={22} color='white' className='mr-2' />
                                 </div>
                                 <div className='flex w-full'>
-                                    <input type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Email" className='bg-transparent border-none  outline-none text-white' />
+                                    <input type="text" onChange={(e) => setEmail(e.target.value)} placeholder="Email" className='bg-transparent border-none  outline-none text-white w-[90%]' />
                                 </div>
                             </div>
                             <div className=" w-full   h-16 mx-10 mt-4 mb-2 rounded-lg flex justify-between items-center border border-zinc-700  p-2">
@@ -128,7 +128,7 @@ function Login() {
                                     type={showPassword ? "text" : "password"} // Conditionally set input type
                                     placeholder="Password"
                                     onChange={(e) => setPassword(e.target.value)}
-                                    className='bg-transparent  border-none outline-none text-white'/>
+                                    className='bg-transparent  border-none outline-none text-white w-[90%]'/>
                                 </div>
                                 <div className='flex justify-center  w-10 items-center'>
                                     {/* Toggle password visibility */}
