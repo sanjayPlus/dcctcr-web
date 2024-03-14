@@ -1,3 +1,4 @@
+"use client"
 import React, { useState } from 'react';
 import { MdArrowBackIosNew, MdOutlineMailOutline } from 'react-icons/md';
 import MobileContainer from '@/components/MobileContainer';

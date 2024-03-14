@@ -127,7 +127,7 @@ function Register() {
             }
 
         }).catch((err) => {
-            toast.error(err.response.data.message);
+            toast.error("User already exists");
 
         })
 
