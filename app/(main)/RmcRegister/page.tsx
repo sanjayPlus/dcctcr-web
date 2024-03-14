@@ -71,7 +71,7 @@ function Rmc() {
                 setShowMessage(false);
             }
             if(response.data.volunteer.status){
-              router.push('/');
+              router.push('/dmc');
             }
             axios
               .get(

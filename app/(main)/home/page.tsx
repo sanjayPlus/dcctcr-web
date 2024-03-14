@@ -142,7 +142,7 @@ function Home() {
           <div className="w-full p-2 rounded-2xl">
             {carousel.length === 0 ? (
               <>
-                <img src="/images/rahulcalicut.jpg" alt="noImage" />
+                <img src="/images/cur_1.jpg" alt="noImage" />
               </>
             ) : (
               <>

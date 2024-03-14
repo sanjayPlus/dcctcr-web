@@ -55,7 +55,10 @@ function Register() {
         axios.get(SERVER_URL + '/admin/districtV4').then((response) => {
             setDistrictList(response.data)
         });
-    }, [])
+    }, []);
+    useEffect(    () => {
+        handleDistrictChange({ target: { value: "Thrissur" } })
+    },[])
     const handleDistrictChange = (event: any) => {
         setDistrict(event.target.value);
         axios.get(SERVER_URL + '/admin/districtV4?district=' + event.target.value).then((response) => {
@@ -183,16 +186,16 @@ function Register() {
 
                             </div>
 
-                            <select id="district" onChange={handleDistrictChange} style={{ width: '80%', height: '50px' }} value={district} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5 bg-neutral-900 text-gray-300">
+                            {/* <select id="district" onChange={handleDistrictChange} style={{ width: '80%', height: '50px' }} value={district} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5 bg-neutral-900 text-gray-300">
                                 <option selected value="">District</option>
                                 {districtList?.map((district) => (
                                     <option key={district} value={district}>{district}</option>
                                 ))}
-                            </select>
+                            </select> */}
                             {
                                 constituencyList.length > 0 && (
                                     <>
-                                        <select id="constituency" onChange={handleConstituencyChange} style={{ width: '80%', height: '50px' }} value={constituency} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5 bg-neutral-900 text-white">
+                                        <select  id="constituency" onChange={handleConstituencyChange} style={{ width: '80%', height: '50px' }} value={constituency} className="my-3 rounded-lg flex justify-start items-center border border-white/20 pl-5 bg-neutral-900 text-white">
                                             <option selected value="">Loka Sabha</option>
                                             {constituencyList?.map((constituency: any) => (
                                                 <option key={constituency} value={constituency}>{constituency}</option>

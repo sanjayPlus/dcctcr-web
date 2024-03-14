@@ -78,7 +78,10 @@ function EditProfile() {
             console.log(error)
         })
 
-    }, [])
+    }, []);
+    useEffect(() => {
+        handleDistrictChange({ target: { value: "Thrissur" } })
+    },[])
     const handleDateChange = (date: any) => {
         setSelectedDate(date);
     };
@@ -189,12 +192,12 @@ function EditProfile() {
                                 />
                             </div>
 
-                            <select id="district" onChange={handleDistrictChange} style={{ width: '80%', height: '50px' }} value={district} className="my-3 rounded-lg flex justify-start items-center border border-black pl-5 bg-white text-black">
+                            {/* <select id="district" onChange={handleDistrictChange} style={{ width: '80%', height: '50px' }} value={district} className="my-3 rounded-lg flex justify-start items-center border border-black pl-5 bg-white text-black">
                                 <option selected value="">District</option>
                                 {districtList?.map((district) => (
                                     <option key={district} value={district}>{district}</option>
                                 ))}
-                            </select>
+                            </select> */}
                             {
                                 constituencyList.length > 0 && (
                                     <>

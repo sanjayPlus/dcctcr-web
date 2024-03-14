@@ -20,12 +20,13 @@ type Leader = {
   youtube: string;
 };
 function SocialMedia() {
-  const [tab, setTab] = useState(1);
+  const [tab, setTab] = useState(0);
   const [startX, setStartX] = useState(0);
   const [endX, setEndX] = useState(0);
   const [national, setNational] = useState<Leader[]>(nationalLeaders);
   const [state, setState] = useState<Leader[]>(stateLeaders);
   const [district, setDistrict] = useState<Leader[]>(districtLeaders);
+  const [lokSabha,setLokSabha] = useState<Leader[]>()
   const router = useRouter();
 
   const handleTouchStart = (event: any) => {
@@ -60,21 +61,28 @@ function SocialMedia() {
  
         setNational(response.data.socialMediaSchema);
       });
-  }, []);
+  }, [tab]);
   useEffect(() => {
     axios
       .get(`${SERVER_URL}/admin/get-social-media?category=KPCC`)
       .then((response) => {
         setState(response.data.socialMediaSchema);
       });
-  }, []);
+  }, [tab]);
   useEffect(() => {
     axios
       .get(`${SERVER_URL}/admin/get-social-media?category=DCC`)
       .then((response) => {
         setDistrict(response.data.socialMediaSchema);
       });
-  }, []);
+  }, [tab]);
+  useEffect(() => {
+    axios
+      .get(`${SERVER_URL}/admin/get-social-media?category=LokSabha`)
+      .then((response) => {
+        setDistrict(response.data.socialMediaSchema);
+      });
+  }, [tab]);
   return (
     <>
       <MobileContainer>
@@ -100,6 +108,16 @@ function SocialMedia() {
           </div>
           <div className="SocialMedia-tabs w-[95%] h-[80vh] overflow-auto rounded-3xl shadow-lg p-6 bg-white scrollbar-container">
             <div className="tab-nav flex h-10 justify-between items-center cursor-pointer gap-3">
+              
+              <p
+                className="font-semibold relative tab-1 text-sm text-center"
+                onClick={() => setTab(0)}
+              >
+                Lok Sabha
+                {tab === 0 && (
+                  <span className="w-full h-[2px] bg-blue-700 rounded-full absolute -bottom-1 left-0"></span>
+                )}
+              </p>
               <p
                 className="font-semibold relative tab-1 text-sm text-center"
                 onClick={() => setTab(1)}
@@ -129,6 +147,65 @@ function SocialMedia() {
               </p>
             </div>
             <div className="tab-content mt-4 ">
+              {tab === 0 && (
+                <>
+                  <div className="tab-1-content flex flex-col gap-1 ">
+                    {lokSabha?.map((leaders: any, index: any) => (
+                      <>
+                        <div
+                          key={index}
+                          className="tab-card flex gap-3 relative mt-3 scrollbar-container"
+                        >
+                          <div className="tab-card-left relative h-20 w-20 ">
+                          <img src={leaders.image} alt="" className="w-20 h-20 rounded-full object-cover" />
+                          </div>
+                          <div className="tab-card-right gap-3 relative h-auto w-48 w-55 ">
+                            <p className="font-bold text-base text-blue-800 ">
+                              {leaders.name}
+                            </p>
+                            <p className="text-xs font-semibold text-yellow-500">
+                              {leaders.position}
+                            </p>
+                            <div className="tab-card-link flex  items-center">
+                              <div
+                                onClick={() => handleLink(leaders.facebook)}
+                                className="tab-card-link flex justify-between items-center"
+                              >
+                                <img
+                                  className="w-10"
+                                  src="/icons/facebook.png"
+                                  alt=""
+                                />
+                              </div>
+                              <div
+                                onClick={() => handleLink(leaders.instagram)}
+                                className="tab-card-link flex justify-between items-center pr-2"
+                              >
+                                <img
+                                  className="w-10"
+                                  src="/icons/instagram.png"
+                                  alt=""
+                                />
+                              </div>
+                              <div
+                                onClick={() => handleLink(leaders.youtube)}
+                                className="tab-card-link flex justify-between items-center"
+                              >
+                                <img
+                                  className="w-10"
+                                  src="/icons/youtube.png"
+                                  alt=""
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <span className="w-full h-[1px] bg-blue-700 absolute -bottom-2"></span>
+                        </div>
+                      </>
+                    ))}
+                  </div>
+                </>
+              )}
               {tab === 1 && (
                 <>
                   <div className="tab-1-content flex flex-col gap-1 ">
