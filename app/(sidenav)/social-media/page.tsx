@@ -47,37 +47,39 @@ function SocialMedia() {
       setTab(tab + 1);
     }
   };
-  const handleLink = (link: string) => {
+  const handleLink = (link:any) => {
     console.log(link);
     if (link) {
-      window.open(link, "_blank", "noopener,noreferrer");
+      
+      window.open(link, "_blank","noopener,noreferrer");
     }
   };
 
   useEffect(() => {
-    axios.get(`${SERVER_URL}/admin/get-social-category`).then(async(response) => {
-      //extract set of category from response
-      setCategory(response.data);
-      setTab(0);
+    axios
+      .get(`${SERVER_URL}/admin/get-social-category`)
+      .then(async (response) => {
+        //extract set of category from response
+        setCategory(response.data);
+        setTab(0);
 
-      await axios
-      .get(`${SERVER_URL}/admin/get-social-media?category=${response.data[0]}`)
-      .then((response) => {
-        setSocialMedia(response.data.socialMediaSchema);
-      
+        await axios
+          .get(
+            `${SERVER_URL}/admin/get-social-media?category=${response.data[0]}`
+          )
+          .then((response) => {
+            setSocialMedia(response.data.socialMediaSchema);
+          });
       });
-    });
-
   }, []);
-
 
   useEffect(() => {
     axios
-    .get(`${SERVER_URL}/admin/get-social-media?category=${category[tab]}`)
-    .then((response) => {
-      setSocialMedia(response.data.socialMediaSchema);
-    });
-  },[tab])
+      .get(`${SERVER_URL}/admin/get-social-media?category=${category[tab]}`)
+      .then((response) => {
+        setSocialMedia(response.data.socialMediaSchema);
+      });
+  }, [tab]);
   return (
     <>
       <MobileContainer>
@@ -139,36 +141,42 @@ function SocialMedia() {
                           {leaders.position}
                         </p>
                         <div className="tab-card-link flex  items-center">
-                          <div
-                            onClick={() => handleLink(leaders.facebook)}
-                            className="tab-card-link flex justify-between items-center"
-                          >
-                            <img
-                              className="w-10"
-                              src="/icons/facebook.png"
-                              alt=""
-                            />
-                          </div>
-                          <div
-                            onClick={() => handleLink(leaders.instagram)}
-                            className="tab-card-link flex justify-between items-center pr-2"
-                          >
-                            <img
-                              className="w-10"
-                              src="/icons/instagram.png"
-                              alt=""
-                            />
-                          </div>
-                          <div
-                            onClick={() => handleLink(leaders.youtube)}
-                            className="tab-card-link flex justify-between items-center"
-                          >
-                            <img
-                              className="w-10"
-                              src="/icons/youtube.png"
-                              alt=""
-                            />
-                          </div>
+                          {leaders?.facebook && (
+                            <div
+                              onClick={() => handleLink(leaders.facebook)}
+                              className="tab-card-link flex justify-between items-center"
+                            >
+                              <img
+                                className="w-10"
+                                src="/icons/facebook.png"
+                                alt=""
+                              />
+                            </div>
+                          )}
+                          {leaders?.instagram && (
+                            <div
+                              onClick={() => handleLink(leaders.instagram)}
+                              className="tab-card-link flex justify-between items-center pr-2"
+                            >
+                              <img
+                                className="w-10"
+                                src="/icons/instagram.png"
+                                alt=""
+                              />
+                            </div>
+                          )}
+                          {leaders?.youtube && (
+                            <div
+                              onClick={() => handleLink(leaders.youtube)}
+                              className="tab-card-link flex justify-between items-center"
+                            >
+                              <img
+                                className="w-10"
+                                src="/icons/youtube.png"
+                                alt=""
+                              />
+                            </div>
+                          )}
                         </div>
                       </div>
                       <span className="w-full h-[1px] bg-blue-700 absolute -bottom-2"></span>
