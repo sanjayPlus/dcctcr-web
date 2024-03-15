@@ -370,7 +370,7 @@ function Home() {
 
           <div
             onClick={() => router.push("/RmcRegister")}
-            className="social-link-container w-full px-4 my-2"
+            className="social-link-container w-full px-4 my-2 cursor-pointer"
           >
             <img src="/images/rmclist.jpg" alt="" />
           </div>

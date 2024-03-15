@@ -5,34 +5,41 @@ import { useRouter } from "next/navigation";
 import { MdArrowBackIosNew } from "react-icons/md";
 import axios from "axios";
 import SERVER_URL from "@/config/SERVER_URL";
+import VOLUNTEER_URL from "@/config/VOLUNTEER_URL";
 
 function Whatsapp() {
     const [Whatsapp, setWhatsapp] = useState([]);
-
     useEffect(() => {
-        if (!localStorage.getItem('token')) {
-            router.push('/login')
-        }
-        axios.get(SERVER_URL + '/user/details', {
-            headers: {
-                'x-access-token': localStorage.getItem("token")
-            }
-        }).then((response) => {
-            if(response.data.volunteer.applied===false){
-                router.push('/home')
-            }
-        }).catch((error) => {
-            router.push('/login')
-            localStorage.removeItem('token')
+      if (!localStorage.getItem("volunteer-token")) {
+        router.push("/dmc");
+      }
+      axios
+        .get(`${VOLUNTEER_URL}/volunteer/protected`, {
+          headers: {
+            "x-access-token": localStorage.getItem("volunteer-token"),
+          },
         })
-        axios.get(SERVER_URL + '/user/get-whatsapp',{
-            headers: {
-                'x-access-token': localStorage.getItem("token")
-            }
-        }).then((response) => {
-            setWhatsapp(response.data.whatsapp) 
+        .then(async (response) => {
+          if (response.status === 200) {
+            axios.get(`${VOLUNTEER_URL}/volunteer/whatsapp`,{
+              headers: {
+                  'x-access-token': localStorage.getItem("volunteer-token")
+              }
+          }).then((response) => {
+              setWhatsapp(response.data.whatsapp) 
+          })
+          } else {
+            localStorage.removeItem("volunteer-token");
+            router.push("/dmc");
+          }
         })
-    },[])
+        .catch((err) => {
+          console.log(err);
+          localStorage.removeItem("volunteer-token");
+          router.push("/dmc");
+        });
+    }, []);
+    
   const router = useRouter();
   return (
     <MobileContainer>

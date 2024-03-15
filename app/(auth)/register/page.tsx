@@ -46,7 +46,7 @@ function Register() {
 
     const handleRadioChange = (event: any) => {
         setLocalSelect(event.target.value);
-        axios.get(SERVER_URL + '/admin/districtV4?district=' + district + '&constituency=' + district + '&assembly=' + assembly + '&local=' + event.target.value).then((response) => {
+        axios.get(SERVER_URL + '/admin/districtV4?district=' + district + '&constituency=' + constituency + '&assembly=' + assembly + '&local=' + event.target.value).then((response) => {
             setLocalList(response.data)
         })
     };
