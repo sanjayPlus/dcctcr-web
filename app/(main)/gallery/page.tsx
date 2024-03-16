@@ -203,12 +203,12 @@ function Gallery() {
                   >
                     {/* Place your like button or any other actions here */}
                   </div>
-                  <h3 className="text-xl font-semibold my-2">{item?.name}</h3>
+                  <h3 className="text-xl font-semibold my-2">{item?.title}</h3>
                   <p className="text-sm">{item?.description}</p>
-                  {item?.link && (
+                  {item?.url && (
                     <button
                       className="text-center font-semibold text-sm bg-amber-500 rounded-2xl px-5 py-2 border-2 border-black mt-2"
-                      onClick={() => window.open(item?.link)}
+                      onClick={() => window.open(item?.url)}
                     >
                       Open
                     </button>
