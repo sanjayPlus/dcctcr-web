@@ -115,7 +115,7 @@ if(response.data==null){
     <>
       <MobileContainer>
 
-        <div className="profile-container w-full min-h-screen flex flex-col justify-center items-center relative" style={{ backgroundImage: "url('images/backimg.jpeg')", backgroundSize: "cover" }}>
+        <div className="profile-container w-full min-h-screen flex flex-col justify-center items-center relative" style={{ backgroundImage: "url('/images/backimg.jpeg')", backgroundSize: "cover" }}>
 
           <div className="profile-card w-[90%] flex flex-col  items-center bg-white rounded-lg shadow-lg mt-9 mb-24 p-3 m-1" >
             <div className="flex flex-col justify-center items-center relative">

@@ -97,6 +97,7 @@ function EditProfile() {
         axios.get(SERVER_URL + '/admin/districtV4').then((response) => {
             setDistrictList(response.data)
         });
+        if(district === '') return
         axios.get(SERVER_URL + '/admin/districtV4'+'?district=' + district).then((response) => {
             setConstituencyList(response.data)
         });

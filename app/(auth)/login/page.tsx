@@ -170,7 +170,7 @@ function Login() {
                             </button>
                             
                         </div>
-                        <p onClick={() => router.push("/register")} className='text-gray-400  p-2 text-base pl-8 mb-2'>Dont't have an account? <span className='text-white font-bold cursor-pointer' >create an Account</span></p>
+                        <p onClick={() => router.push("/register")} className='text-gray-400  p-2 text-base pl-8 mb-2'>Dont't have an account? <span className='text-white font-bold cursor-pointer' >Create an account</span></p>
 
                     </div>
                 </div>

@@ -186,7 +186,7 @@ function Rmc() {
         />
         {showMessage ? (
           <>
-            <h1 className="text-2xl text-center font-bold my-7 top-text d3 text-black">
+            <h1 className="text-2xl text-center font-bold my-7 top-text">
               Register as DMC Member
             </h1>
             <div className="flex   justify-center items-center bg-white p-6 m-4 rounded-3xl h-min shadow-xl shadow-black w-[85%]">

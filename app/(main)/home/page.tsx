@@ -261,7 +261,7 @@ function Home() {
               </div>
 
               <div className="gandi-div">
-                <img className="gandi-img" src="/images/home-hero.png" alt="" />
+                <img className="gandi-img" src="/Group.jpg" alt="" />
               </div>
 
               <div className="article p-3 ">
@@ -400,17 +400,17 @@ function Home() {
                             </Link> */}
           {/* </div> */}
           {/* </div> */}
-          <div className="w-full p-2 rounded-2xl">
+          <div className="w-full p-2 rounded-2xl mb-24">
             <AdsCarousel carousel={ads} />
           </div>
-          <div className="banner-image w-full h-full flex justify-center items-center px-2 rounded-lg mt-3 mb-20 cursor-pointer">
+          {/* <div className="banner-image w-full h-full flex justify-center items-center px-2 rounded-lg mt-3 mb-20 cursor-pointer">
             <img
               onClick={() => router.push("/developers")}
               src="/images/dev-banner.jpg"
               alt=""
               className="rounder-lg"
             />
-          </div>
+          </div> */}
         </div>
         <BottomNav activeItem="home" />
       </MobileContainer>

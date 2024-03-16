@@ -28,9 +28,9 @@ function Events() {
     return (
         <>
             <MobileContainer>
-                <div className="profile-container w-full min-h-screen flex flex-col justify-start items-center relative" style={{ backgroundImage: "url('images/backimg.jpeg')", backgroundSize: "cover" }}>
+                <div className="profile-container w-full min-h-screen flex flex-col justify-start items-center relative" style={{ backgroundImage: "url('/images/backimg.jpeg')", backgroundSize: "cover" }}>
                     <MdArrowBackIosNew className='text-2xl cursor-pointer absolute top-5 left-5 top-text' onClick={() => router.back()} />
-                    <h1 className=' text-2xl text-center font-bold my-7 top-text d3 text-black'>Events</h1>
+                    <h1 className=' text-2xl text-center font-bold my-7 top-text text-white'>Events</h1>
                     <div className='w-80 bg-white shadow-lg p-1 rounded-xl m-2 justify-center items-center'>
                         <Calendar onChange={handleDateChange} value={value} />
                     </div>

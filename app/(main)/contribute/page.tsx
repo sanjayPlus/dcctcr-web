@@ -53,7 +53,7 @@ function Contribute() {
 
                     <div style={{display : 'flex' , flexDirection : 'column'}}>
 
-                        <img src="images/imagecontri.png" className='img-contri' alt="noImage" style={{ width: '200px', height: '200px' , display: 'flex'  , alignSelf : 'center' }} />
+                        <img src="/images/imagecontri.png" className='img-contri' alt="noImage" style={{ width: '200px', height: '200px' , display: 'flex'  , alignSelf : 'center' }} />
                         
                         <input type="text"  placeholder='₹0' style={{display: 'flex'  , alignSelf : 'center' , textAlign : 'center' , width :'max-content' , border : 'none' , outline : 'none'}} onChange={(e) => setAmount(parseInt(e.target.value))}/>
 

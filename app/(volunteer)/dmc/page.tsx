@@ -7,10 +7,12 @@ import axios from "axios";
 import SERVER_URL from "@/config/SERVER_URL";
 import VOLUNTEER_URL from "@/config/VOLUNTEER_URL";
 import Loading from "@/components/Loading";
+import toast from "react-hot-toast";
 
 function Dmc() {
   const router = useRouter();
   const [loading, setLoading] = React.useState(true);
+  const [appLink, setAppLink] = React.useState<any>([]);
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       router.push("/login");
@@ -48,6 +50,14 @@ function Dmc() {
         localStorage.removeItem("token");
       });
   }, []);
+  useEffect(() => {
+      axios.get(`${VOLUNTEER_URL}/admin/app-link`).then((response) => {
+        console.log(response.data)
+          if(response.status == 200){
+            setAppLink(response.data.volunteerAppLink)
+          }
+      })
+  },[])
   if(loading){
     return <Loading/>
   }
@@ -78,7 +88,7 @@ function Dmc() {
             </div>
           </div>
           {/* 2 */}
-          <div className="flex gap-2 cursor-pointer">
+          <div className="flex gap-2 cursor-pointer" onClick={()=>appLink[1]?.link?window.open(appLink[1].link, "_blank"):toast.error("Coming Soon")}>
             <div className="w-[80%] rounded-s-2xl  bg-[#EAEDF8] flex items-center pr-16 justify-between p-3">
               <h1>Controlls:</h1>
               <img src="/dmc/controlls.png" alt="" />
@@ -88,7 +98,7 @@ function Dmc() {
             </div>
           </div>
           {/* 3 */}
-          <div className="flex gap-2 cursor-pointer">
+          <div className="flex gap-2 cursor-pointer" onClick={()=>appLink[0]?.link?window.open(appLink[0].link, "_blank"):toast.error("Coming Soon")}>
             <div className="w-[80%] rounded-s-2xl  bg-[#EAEDF8] flex items-center pr-16 justify-between p-3">
               <h1>Ente Boothil Congress (EBC):</h1>
               <img src="/dmc/hand.png" alt="" />

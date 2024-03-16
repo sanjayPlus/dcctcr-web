@@ -219,8 +219,8 @@ function Register() {
                 <PhoneInput
                   placeholder="Enter phone number"
                   value={data.phone}
-                  onChange={(value:any) => setData({ ...data, phone: value })}
-                defaultCountry="IN"
+                  onChange={(value: any) => setData({ ...data, phone: value })}
+                  defaultCountry="IN"
                 />
               </div>
               <div
@@ -240,6 +240,20 @@ function Register() {
                   yearDropdownItemNumber={yearsToShow}
                   maxDate={new Date()}
                   className="text-white bg-transparent border-none outline-none w-full"
+                  onFocus={(e:any) => {
+                    e.target.blur(); // Disables auto-selection on focus
+                  }}
+                  onKeyDown={(e:any) => {
+                    // Prevent non-numeric input
+                    if (
+                      !(
+                        (e.keyCode > 47 && e.keyCode < 58) ||
+                        (e.keyCode > 95 && e.keyCode < 106)
+                      )
+                    ) {
+                      e.preventDefault();
+                    }
+                  }}
                 />
               </div>
 
