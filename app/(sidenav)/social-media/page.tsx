@@ -60,15 +60,15 @@ function SocialMedia() {
       .get(`${SERVER_URL}/admin/get-social-category`)
       .then(async (response) => {
         //extract set of category from response
-        setCategory(response.data);
+        setCategory(response?.data);
         setTab(0);
 
         await axios
           .get(
-            `${SERVER_URL}/admin/get-social-media?category=${response.data[0]}`
+            `${SERVER_URL}/admin/get-social-media?category=${response?.data[0]}`
           )
           .then((response) => {
-            setSocialMedia(response.data.socialMediaSchema);
+            setSocialMedia(response?.data?.socialMediaSchema);
           });
       });
   }, []);
@@ -128,22 +128,22 @@ function SocialMedia() {
                     >
                       <div className="tab-card-left relative h-20 w-20 ">
                         <img
-                          src={leaders.image}
+                          src={leaders?.image}
                           alt=""
                           className="w-20 h-20 rounded-full object-cover"
                         />
                       </div>
                       <div className="tab-card-right gap-3 relative h-auto w-48 w-55 ">
                         <p className="font-bold text-base text-blue-800 ">
-                          {leaders.name}
+                          {leaders?.name}
                         </p>
                         <p className="text-xs font-semibold text-yellow-500">
-                          {leaders.position}
+                          {leaders?.position}
                         </p>
                         <div className="tab-card-link flex  items-center">
                           {leaders?.facebook && (
                             <div
-                              onClick={() => handleLink(leaders.facebook)}
+                              onClick={() => handleLink(leaders?.facebook)}
                               className="tab-card-link flex justify-between items-center"
                             >
                               <img
@@ -155,7 +155,7 @@ function SocialMedia() {
                           )}
                           {leaders?.instagram && (
                             <div
-                              onClick={() => handleLink(leaders.instagram)}
+                              onClick={() => handleLink(leaders?.instagram)}
                               className="tab-card-link flex justify-between items-center pr-2"
                             >
                               <img
@@ -167,7 +167,7 @@ function SocialMedia() {
                           )}
                           {leaders?.youtube && (
                             <div
-                              onClick={() => handleLink(leaders.youtube)}
+                              onClick={() => handleLink(leaders?.youtube)}
                               className="tab-card-link flex justify-between items-center"
                             >
                               <img

@@ -17,8 +17,8 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  // output:"export",
-  // trailingSlash: true,
+  output:"export",
+  trailingSlash: true,
 };
 
 module.exports = withPWA(nextConfig);
