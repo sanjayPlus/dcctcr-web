@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/bundle';
 import { Autoplay, EffectCoverflow, Zoom } from 'swiper/modules';
+import axios from 'axios';
+import SERVER_URL from '@/config/SERVER_URL';
 function DeveloperCarousel() {
-    const slides = [];
-    for (let i = 1; i <= 18; i++) {
-        slides.push(<SwiperSlide key={i} ><img src={`/developers/${i}.png`} className='w-[100%] bg-cover rounded-lg' alt="" /></SwiperSlide>);
-      }
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        axios.get(SERVER_URL + "/admin/developers").then((response) => {
+            setData(response.data);
+        })
+    },[])
+
 
     return (
         <>
@@ -37,7 +42,15 @@ function DeveloperCarousel() {
                     }}
                 >
 
-                    {slides}
+                {
+                    data.map((developer:any) => {
+                        return (
+                            <SwiperSlide key={developer?._id} >
+                                <img src={developer?.image} className='w-[100%] bg-cover rounded-lg' alt="" />
+                            </SwiperSlide>
+                        )
+                    })
+                }
                 </Swiper>
             </div>
         </>

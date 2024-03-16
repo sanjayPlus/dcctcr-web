@@ -71,3 +71,6 @@ input:-webkit-autofill:focus {
   ::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+  .PhoneInputInput{
+    @apply  bg-neutral-900 border-none outline-none text-white pl-2 w-full gap-1
+  }
