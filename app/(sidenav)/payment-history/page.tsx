@@ -24,7 +24,7 @@ function PaymentHistory() {
     return (
         <>
             <MobileContainer>
-                <div className="PaymentHistory w-full min-h-screen flex flex-col justify-start items-center relative" style={{ backgroundImage: "url('images/backimg.jpeg')", backgroundSize: "cover" }}>
+                <div className="PaymentHistory w-full min-h-screen flex flex-col justify-start items-center relative" style={{ backgroundImage: "url('/images/backimg.jpeg')", backgroundSize: "cover" }}>
                     <MdArrowBackIosNew size={20} className='text-2xl cursor-pointer absolute top-5 left-5 top-text' onClick={() => router.back()} />
                     <h1 className=' text-2xl text-center font-bold my-7 text-black drop-shadow-lg top-text'>Payment History</h1>
 

@@ -34,7 +34,7 @@ function Slogan() {
     return (
         <>
             <MobileContainer>
-                <div className="slogan-container w-full min-h-screen  flex flex-col justify-start items-center relative" style={{ backgroundImage: "url('images/backimg.jpeg')", backgroundSize: "cover" }}>
+                <div className="slogan-container w-full min-h-screen  flex flex-col justify-start items-center relative" style={{ backgroundImage: "url('/images/backimg.jpeg')", backgroundSize: "cover" }}>
                 <div className='w-full h-20 bg-white flex items-center flex-col justify-center'>
                     <MdArrowBackIosNew className='text-lg cursor-pointer absolute top-9 left-4 text-black' onClick={() => router.back()} />
                     <h1 className=' text-xl text-center font-bold my-7  drop-shadow-lg text-black mt-9'>Solgan</h1>

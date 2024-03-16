@@ -82,7 +82,7 @@ function Topnav() {
             <div style={{ display: Sidenav ? "block" : "none" }} className="sidenav fixed w-64 h-screen bg-white top-0 z-50 overflow-y-scroll overflow-x-hidden scrollbar-container pb-56 ">
 
                 <div className="profile-img w-full flex justify-center items-center relative mt-0">
-                    <img src={profile?profile:"/images/imagecontri.png"} alt="noImage" className='w-100% rounded-lg'/>
+                    <img src={profile?profile:"/images/imagecontri.png"} alt="noImage" className='w-100% h-[300px] object-cover rounded-lg'/>
                     <IoClose size={24} onClick={() => { setSidenav(!Sidenav) }} className='absolute right-[5px] top-[5px] cursor-pointer bg-[#082282] text-[#fff] rounded-full p-[5px]'/>
                 </div>
 

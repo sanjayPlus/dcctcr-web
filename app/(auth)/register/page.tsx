@@ -136,6 +136,10 @@ function Register() {
     if (!data.email.match(/^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/)) {
       return toast.error("Please enter a valid email");
     }
+    if (!(data?.password.length >= 6)) {
+      return toast.error("Password must be at least 6 characters");
+   }
+  
     let panchayath = localSelect === "panchayath" ? local : "";
     let municipality = localSelect === "municipality" ? local : "";
     let corporation = localSelect === "corporation" ? local : "";
