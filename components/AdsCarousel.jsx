@@ -9,7 +9,8 @@ function AdsCarousel({ carousel }) {
     carousel.map((ads) => {
 
         slides.push(<SwiperSlide key={ads._id} >
-            <Link href={ads.href}>
+
+            <Link href={ads.href===null?"/":ads.href}>
                 <img src={ads.image} className='w-[100%] bg-cover rounded-lg' alt="" />
             </Link>
         </SwiperSlide>);

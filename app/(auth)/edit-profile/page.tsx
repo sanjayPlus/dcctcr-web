@@ -66,11 +66,11 @@ function EditProfile() {
                 local1 = 'corporation'
             }
            
-            axios.get(SERVER_URL + '/admin/districtV4?district=' + response.data.district + '&constituency=' + response.data.district).then((res) => {
+            axios.get(SERVER_URL + '/admin/districtV4?district=' + response.data.district + '&constituency=' + response.data.constituency).then((res) => {
                 console.log(res.data)
                 setAssemblyList(res.data)
             })
-            axios.get(SERVER_URL + '/admin/districtV4?district=' + response.data.district + '&constituency=' + response.data.district + '&assembly=' + response.data.assembly + '&local=' + local1).then((res) => {
+            axios.get(SERVER_URL + '/admin/districtV4?district=' + response.data.district + '&constituency=' + response.data.constituency+ '&assembly=' + response.data.assembly + '&local=' + local1).then((res) => {
                 console.log(res.data)
                 setLocalList(res.data)
             })
@@ -88,7 +88,7 @@ function EditProfile() {
 
     const handleRadioChange = (event: any) => {
         setLocalSelect(event.target.value);
-        axios.get(SERVER_URL + '/admin/districtV4?district=' + district + '&constituency=' + district + '&assembly=' + assembly + '&local=' + event.target.value).then((response) => {
+        axios.get(SERVER_URL + '/admin/districtV4?district=' + district + '&constituency=' + constituency + '&assembly=' + assembly + '&local=' + event.target.value).then((response) => {
             setLocalList(response.data)
 
         })

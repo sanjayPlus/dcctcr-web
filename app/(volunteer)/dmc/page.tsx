@@ -22,35 +22,23 @@ function Dmc() {
         },
       })
       .then((response) => {
-        if (localStorage.getItem("volunteer-token")) {
-          axios.get(`${VOLUNTEER_URL}/volunteer/protected`,{
-            headers: {
-              "x-access-token": localStorage.getItem("volunteer-token"),
-            },
-          }).then((response)=>{
-            if(response.status!==200){
-              localStorage.removeItem("volunteer-token");
-              router.push("/home");
-            }
-          }).catch((err)=>{
-            console.log(err);
-            localStorage.removeItem("volunteer-token");
-            router.push("/home");
-          })
-        } else {
-          axios
-            .get(`${SERVER_URL}/user/login-as-volunteer`, {
-              headers: {
-                "x-access-token": localStorage.getItem("token"),
-              },
-            })
-            .then((response) => {
-              localStorage.setItem("volunteer-token", response.data.token);
-            })
-            .catch((err) => {
-              console.log(err);
-            });
+        console.log(response);
+        if (!response.data.volunteer.status) {
+          router.push("/RmcRegister");
         }
+
+        axios
+          .get(`${SERVER_URL}/user/login-as-volunteer`, {
+            headers: {
+              "x-access-token": localStorage.getItem("token"),
+            },
+          })
+          .then((response) => {
+            localStorage.setItem("volunteer-token", response.data.token);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
       })
       .catch(() => {
         router.push("/login");
@@ -72,7 +60,10 @@ function Dmc() {
           </h1>
         </div>
         <div className="w-[92%] h-[90%] bg-white p-2  flex flex-col gap-4 pb-18">
-          <div className="flex gap-2 cursor-pointer" onClick={() => router.push("/idcard")}>
+          <div
+            className="flex gap-2 cursor-pointer"
+            onClick={() => router.push("/idcard")}
+          >
             <div className="w-[80%] rounded-s-2xl  bg-[#EAEDF8] flex items-center pr-16 justify-between p-3">
               <h1>IDCreator:</h1>
               <img src="/dmc/Groupdcc.png" alt="" />
@@ -102,7 +93,10 @@ function Dmc() {
             </div>
           </div>
           {/* 4 */}
-          <div className="flex gap-2 cursor-pointer" onClick={() => router.push("/whatsapp")}>
+          <div
+            className="flex gap-2 cursor-pointer"
+            onClick={() => router.push("/whatsapp")}
+          >
             <div className="w-[80%] rounded-s-2xl  bg-[#EAEDF8] flex items-center pr-16 justify-between p-3">
               <h1>WhatsApp Group:</h1>
               <img src="/dmc/whatsapp.png" alt="" />
@@ -125,7 +119,10 @@ function Dmc() {
             </div>
           </div>
           {/* 6 */}
-          <div className="flex gap-2 cursor-pointer" onClick={() => router.push("/reports")}>
+          <div
+            className="flex gap-2 cursor-pointer"
+            onClick={() => router.push("/reports")}
+          >
             <div className="w-[80%] rounded-s-2xl  bg-[#EAEDF8] flex items-center pr-16 justify-between   p-3">
               <h1>Reports:</h1>
               <img src="/dmc/reports.png" alt="" />

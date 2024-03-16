@@ -7,6 +7,8 @@ import { IoIosMail } from 'react-icons/io'
 import { IoLocationSharp } from 'react-icons/io5'
 import { MdArrowBackIosNew, MdLocalPhone } from 'react-icons/md'
 
+const district ="Thrissur"
+
 function Contact() {
     const router = useRouter()
     return (
@@ -23,10 +25,10 @@ function Contact() {
                         <div className="contact-info w-full flex flex-col justify-center items-center">
                             <img className="w-16" alt="" src="/images/imagecontri.png" />
                             <h6 className="font-bold text-sm text-blue-800 text-center ">District congress committe</h6>
-                            <p className="text-xs text-center text-blue-700">Kozhikode District</p>
+                            <p className="text-xs text-center text-blue-700">Thrissur District</p>
                         </div>
                         <div className="contact-info w-full flex flex-col justify-start gap-1 items-center p-1">
-                            <h5 className="text-sm font-bold self-start">Kozhikode District Congress Committe Office</h5>
+                            <h5 className="text-sm font-bold self-start">Thrissur District Congress Committe Office</h5>
                             <div className="contact-info w-full flex flex-col justify-start  ">
                                 <div className="contact-info w-full flex flex-col justify-start   ">
                                     <div className="flex w-52  gap-2 ">
@@ -35,6 +37,7 @@ function Contact() {
                                         </div>
                                         <div className="flex flex-col  items-start w-64 mt-2  ">
                                             {/* <p className="text-xs font-semibold ">0487 2335454</p> */}
+                                            <p className="text-xs font-semibold ">0487 2335454</p>
                                             <p className="text-xs font-semibold ">+91 9447186850</p>
                                             {/* <p className="text-xs font-semibold " >: 0487 2422151</p> */}
                                         </div>
@@ -46,7 +49,7 @@ function Contact() {
                                             <IoLocationSharp size={21} />
                                         </div>
                                         <div className="flex flex-col justify-center items-start w-64">
-                                            <p className="text-xs font-semibold p-5"> 7Q8H+R72, Wayanad Rd, West Nadakkave, P.O, Nadakkave, Kozhikode, Kerala 673011</p>
+                                            <p className="text-xs font-semibold p-5">G6G5+2F2, Naikkanal , Thrissur , Kerala 680 020</p>
                                         </div>
                                     </div>
                                 </div>
@@ -56,7 +59,7 @@ function Contact() {
                                             <IoIosMail size={21} />
                                         </div>
                                         <div className="flex flex-col justify-center items-start w-64  ">
-                                            <p className="text-xs font-semibold p-5 "> chairmanpups@gmail.com</p>
+                                            <p className="text-xs font-semibold p-5 ">tsrdcc@gmail.com</p>
                                         </div>
                                     </div>
                                 </div>

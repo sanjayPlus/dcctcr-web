@@ -4,8 +4,7 @@ import { useRouter } from 'next/navigation'
 
 import React from 'react'
 import { MdArrowBackIosNew } from 'react-icons/md'
-
-const name ="MAHATHMA";
+import name from '@/contants/name'
 function Disclaimer() {
     const router = useRouter()
     return (

@@ -61,7 +61,7 @@ const [data,setData] = useState<any>({})
     if (deltaX > 50 && tab > 1) {
       // Swipe right to decrease tab number
       setTab(tab - 1);
-    } else if (deltaX < -50 && tab < 3) {
+    } else if (deltaX < -50 && tab < 4) {
       // Swipe left to increase tab number
       setTab(tab + 1);
     }

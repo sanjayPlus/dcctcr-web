@@ -318,7 +318,7 @@ function Home() {
           <div className="social-link-container flex justify-center w-full ">
             <div className="w-80 px-4  flex justify-between items-center rounded-xl mb-2  bg-white">
               <div>
-                <Link href="https://www.facebook.com/people/DCC-Office-Kozhikode/100068948205321/">
+                <Link href="https://www.facebook.com/DCCThrissurOfficial/">
                   <FaFacebook
                     className="fill-blue-600 gap-y-3 mt-1 mb-1 "
                     size={35}
@@ -326,7 +326,7 @@ function Home() {
                 </Link>
               </div>
               <div>
-                <Link href="https://www.instagram.com/intuc__thrissur?igsh=Zm94eTE1MncwZWEw">
+                <Link href="https://www.instagram.com/dcc_thrissur_/">
                   <img
                     src="/icons/instagram.png"
                     alt=""
@@ -335,7 +335,7 @@ function Home() {
                 </Link>
               </div>
               <div>
-                <Link href="https://www.youtube.com/results?search_query=dcc+kozhikode">
+                <Link href="https://www.youtube.com/channel/UCyi2T6uv1x7HWMqUmAHGUDg">
                   <img
                     src="/icons/youtube.png"
                     alt=""
@@ -344,7 +344,7 @@ function Home() {
                 </Link>
               </div>
               <div>
-                <Link href="wa.me/919846203965">
+                <Link href="https://wa.me/918281749650">
                   <IoLogoWhatsapp
                     className="fill-green-500 gap-y-3 mb-1"
                     size={34}
@@ -352,11 +352,13 @@ function Home() {
                 </Link>
               </div>
               <div>
+              <Link href="tel:+918281749650">
                 <img
                   src="/icons/customer-care.png"
                   alt=""
                   className="w-10 p-2 mr-1 ml-1"
                 />
+                </Link>
               </div>
             </div>
           </div>

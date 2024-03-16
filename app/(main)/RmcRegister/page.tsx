@@ -22,18 +22,13 @@ import VOLUNTEER_URL from "@/config/VOLUNTEER_URL";
 
 // type Value = ValuePiece | [ValuePiece, ValuePiece];
 function Rmc() {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const [booth, setBooth] = useState("");
   const [district, setDistrict] = useState("");
   const [assembly, setAssembly] = useState("");
   const [constituency, setConstituency] = useState("");
-  const [mandalamMember, setMandalamMember] = useState("");
-  const [mandlamPresident, setMandlamPresident] = useState("");
   const [phone, setPhone] = useState("");
   const [districtList, setDistrictList] = useState([]);
-
+  const [ward, setWard] = useState("");
   const [constituencyList, setConstituencyList] = useState([]);
 
   const [assemblyList, setAssemblyList] = useState([]);
@@ -41,7 +36,7 @@ function Rmc() {
   const [boothList, setBoothList] = useState([]);
   const [boothRule, setBoothRule] = useState<any[]>([]);
   const [userData, setUserData] = useState<any>({});
-  const [power,setPower] = useState("");
+  const [power, setPower] = useState("");
   const [showMessage, setShowMessage] = useState(true);
   const router = useRouter();
   useEffect(() => {
@@ -56,7 +51,6 @@ function Rmc() {
         },
       })
       .then((res) => {
-     
         axios
           .get(SERVER_URL + "/user/details", {
             headers: {
@@ -67,11 +61,11 @@ function Rmc() {
             setUserData(response.data);
             setDistrict(response.data.district);
             setConstituency(response.data.assembly);
-            if(response.data.volunteer.applied){
-                setShowMessage(false);
+            if (response.data.volunteer.applied) {
+              setShowMessage(false);
             }
-            if(response.data.volunteer.status){
-              router.push('/dmc');
+            if (response.data.volunteer.status) {
+              router.push("/dmc");
             }
             axios
               .get(
@@ -95,60 +89,7 @@ function Rmc() {
           });
       });
   }, []);
-  // useEffect(() => {
-  // axios.get(SERVER_URL + "/admin/state-districtV1").then((res) => {
-  //   setDistrictList(res.data);
-  // });
 
-  // }, []);
-  // const handleDistrictChange = (e: any) => {
-  //   const selectedDistrict = e.target.value; // Get the selected district from the event
-
-  //   setDistrict(selectedDistrict); // Update the district state with the selected district
-
-  //   axios
-  //     .get(
-  //       `${SERVER_URL}/admin/state-districtV1?district=${selectedDistrict}`,
-  //       {
-  //         // Use the updated district value
-  //         headers: { "x-access-token": localStorage.getItem("token") },
-  //       }
-  //     )
-  //     .then((userResponse) => {
-  //       if (userResponse.status === 200) {
-  //         setConstituencyList(userResponse.data);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response.data);
-  //     });
-  // };
-
-  // const handleConstituencyChange = (e: any) => {
-  //   if (district == "") {
-  //     toast.error("Select The District");
-  //   }
-  //   const selectedConstituency = e.target.value; // Get the selected district from the event
-
-  //   setConstituency(selectedConstituency); // Update the district state with the selected district
-
-  //   axios
-  //     .get(
-  //       `${SERVER_URL}/admin/state-districtV1?district=${district}&constituency=${selectedConstituency}`,
-  //       {
-  //         // Use the updated district value
-  //         headers: { "x-access-token": localStorage.getItem("token") },
-  //       }
-  //     )
-  //     .then((userResponse) => {
-  //       if (userResponse.status === 200) {
-  //         setAssemblyList(userResponse.data);
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       console.log(err.response.data);
-  //     });
-  // };
   const handleAssemblyChange = (e: any) => {
     if (district == "") {
       toast.error("Select The District");
@@ -182,15 +123,15 @@ function Rmc() {
   };
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if(!power){
+    if (!power) {
       toast.error("Please Select Power");
       return;
     }
-    if(!booth){
+    if (!booth) {
       toast.error("Please Select Booth");
       return;
     }
-    if(!assembly){
+    if (!assembly) {
       toast.error("Please Select Mandalam");
       return;
     }
@@ -207,7 +148,8 @@ function Rmc() {
           booth,
           boothRule: [booth],
           constituency: constituency,
-          power:power,
+          power: power,
+          ward: ward,
         },
         {
           headers: {
@@ -216,8 +158,8 @@ function Rmc() {
         }
       )
       .then((res) => {
-       toast.success("Registered Successfully");
-       setShowMessage(false);
+        toast.success("Registered Successfully");
+        setShowMessage(false);
       })
       .catch((err) => {
         toast.error("Already Registered");
@@ -228,7 +170,7 @@ function Rmc() {
       <div
         className="profile-container w-full min-h-screen flex flex-col justify-start items-center relative "
         style={{
-          backgroundImage: "url('images/backimg.jpeg')",
+          backgroundImage: "url('/backimg.jpeg')",
           backgroundSize: "cover",
         }}
       >
@@ -236,14 +178,14 @@ function Rmc() {
           className="text-2xl cursor-pointer absolute top-5 left-5 top-text"
           onClick={() => router.back()}
         />
-{
-    showMessage?<>
-         <h1 className="text-2xl text-center font-bold my-7 top-text d3 text-black">
-           Register as DMC Member
-        </h1>
-        <div className="flex   justify-center items-center bg-white p-6 m-4 rounded-3xl h-min shadow-xl shadow-black ">
-          <div className="input-container  pb-5 flex flex-col w-full justify-center items-center ">
-            {/* <div className="max-w-sm mx-auto">
+        {showMessage ? (
+          <>
+            <h1 className="text-2xl text-center font-bold my-7 top-text d3 text-black">
+              Register as DMC Member
+            </h1>
+            <div className="flex   justify-center items-center bg-white p-6 m-4 rounded-3xl h-min shadow-xl shadow-black w-[85%]">
+              <div className="input-container  pb-5 flex flex-col w-full justify-center items-center ">
+                {/* <div className="max-w-sm mx-auto">
               <label
                 htmlFor="district"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
@@ -283,66 +225,75 @@ function Rmc() {
                 ))}
               </select>
             </div> */}
-            <div className="max-w-sm mx-auto">
-              <label
-                htmlFor="power"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
-              >
-                Select Task Force
-              </label>
-              <select
-                id="power"
-                onChange={(e) => setPower(e.target.value)}
-                className="bg-gray-50 mb-2 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-900 focus:border-blue-900 block w-full p-3 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-800 dark:focus:border-blue-900"
-              >
-                <option>Select an option</option>
-                <option value="DTF">DTF</option>
-                <option value="ATF">ATF</option>
-                <option value="MTF">MTF</option>
-                <option value="BTF">BTF</option>
-              </select>
-            </div>
-            <div className="max-w-sm mx-auto">
-              <label
-                htmlFor="assembly"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
-              >
-                Select Mandlam
-              </label>
-              <select
-                id="assembly"
-                onChange={(e) => handleAssemblyChange(e)}
-                className="bg-gray-50 mb-2 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-900 focus:border-blue-900 block w-full p-3 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-800 dark:focus:border-blue-900"
-              >
-                <option>Select an option</option>
-                {assemblyList.map((assembly: any) => (
-                  <option key={assembly} value={assembly}>
-                    {assembly}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="max-w-sm mx-auto">
-              <label
-                htmlFor="booth"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
-              >
-                Select Booth
-              </label>
-              <select
-                id="booth"
-                onChange={(e) => setBooth(e.target.value)}
-                className="bg-gray-50 mb-2 border border-gray-300 text-sm rounded-xl overflow-x-scroll focus:ring-blue-900 focus:border-blue-800 block w-full p-3 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-800 dark:focus:border-blue-900"
-              >
-                <option>Select an option</option>
-                {boothList.map((booth: any) => (
-                  <option key={booth} value={booth.number}>
-                    {booth.number}
-                  </option>
-                ))}
-              </select>
-            </div>
-            {/* <div className="max-w-sm mx-auto">
+                <div className="max-w-sm mx-auto">
+                  <label
+                    htmlFor="power"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                  >
+                    Select Task Force
+                  </label>
+                  <select
+                    id="power"
+                    onChange={(e) => setPower(e.target.value)}
+                    className="bg-gray-50 mb-2 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-900 focus:border-blue-900 block w-full p-3 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-800 dark:focus:border-blue-900"
+                  >
+                    <option>Select an option</option>
+                    <option value="DTF">DTF</option>
+                    <option value="ATF">ATF</option>
+                    <option value="MTF">MTF</option>
+                    <option value="BTF">BTF</option>
+                  </select>
+                </div>
+                <div className="max-w-sm mx-auto">
+                  <label
+                    htmlFor="assembly"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                  >
+                    Select Mandlam
+                  </label>
+                  <select
+                    id="assembly"
+                    onChange={(e) => handleAssemblyChange(e)}
+                    className="bg-gray-50 mb-2 border border-gray-300 text-gray-900 text-sm rounded-xl focus:ring-blue-900 focus:border-blue-900 block w-full p-3 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-800 dark:focus:border-blue-900"
+                  >
+                    <option>Select an option</option>
+                    {assemblyList.map((assembly: any) => (
+                      <option key={assembly} value={assembly}>
+                        {assembly}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="max-w-sm mx-auto">
+                  <label
+                    htmlFor="booth"
+                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
+                  >
+                    Select Booth
+                  </label>
+                  <select
+                    id="booth"
+                    onChange={(e) => setBooth(e.target.value)}
+                    className="bg-gray-50 mb-2 border border-gray-300 text-sm rounded-xl overflow-x-scroll focus:ring-blue-900 focus:border-blue-800 block w-full p-3 dark:bg-white dark:border-gray-600 dark:placeholder-black dark:text-black dark:focus:ring-blue-800 dark:focus:border-blue-900"
+                  >
+                    <option>Select an option</option>
+                    {boothList.map((booth: any) => (
+                      <option key={booth} value={booth.number}>
+                        {booth.number}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div className="max-w-sm mx-auto">
+                  <input
+                    type="text"
+                    onChange={(e) => setWard(e.target.value)}
+                    className="bg-transparent border border-gray-300 text-sm rounded-xl outline-none text-black block w-full p-3"
+
+                    placeholder="Ward"
+                  />
+                </div>
+                {/* <div className="max-w-sm mx-auto">
               <label
                 htmlFor="booth"
                 className="block mb-2 text-sm font-medium text-gray-900 dark:text-black"
@@ -375,28 +326,27 @@ function Rmc() {
               ))}
             </div> */}
 
-            <div className="w-full mx-auto my-5 px-6">
-              <button
-                className="bg-primary text-white p-4 w-full py-3 rounded-lg bg-indigo-800"
-                onClick={handleSubmit}
-              >
-                Add Volunteer
-              </button>
+                <div className="w-full mx-auto my-5 px-6">
+                  <button
+                    className="bg-primary text-white p-4 w-full py-3 rounded-lg bg-indigo-800"
+                    onClick={handleSubmit}
+                  >
+                    Add Volunteer
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-    </>:<>
-    <h1 className="text-2xl text-center font-bold my-7 top-text d3 text-black">
-           Register as DMC Member
-        </h1>
-        <div className="flex   justify-center items-center bg-white p-6 m-4 rounded-3xl h-min shadow-xl shadow-black ">
-            <h1>
-              We Will Update Your Status Within 48 hours
+          </>
+        ) : (
+          <>
+            <h1 className="text-2xl text-center font-bold my-7 top-text d3 text-black">
+              Register as DMC Member
             </h1>
-        </div>
-    </>
-}
-   
+            <div className="flex   justify-center items-center bg-white p-6 m-4 rounded-3xl h-min shadow-xl shadow-black ">
+              <h1>We Will Update Your Status Within 48 hours</h1>
+            </div>
+          </>
+        )}
       </div>
     </MobileContainer>
   );
