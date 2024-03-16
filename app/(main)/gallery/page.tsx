@@ -115,7 +115,7 @@ function Gallery() {
                         {active === "image" &&
                             gallery.map((item: any, index: any) => (
                                 <>
-                                    <div className="galery-card w-[86%] flex flex-col justify-center items-center bg-white shadow-lg p-5 rounded-xl my-2 border-2  border-black" key={index}>
+                                    <div className="galery-card w-[86%] flex flex-col justify-center items-center bg-white shadow-lg p-5 rounded-xl my-2 border-2  border-black" key={index} onClick={() => item?.link && window.open(item?.link)}>
                                         <div className="gallery-image w-[260px] h-[320px] relative" style={{ backgroundImage: `url(${item.image})`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
                                             <div className='text-xl absolute bottom-2 right-3 w-10 h-10 flex justify-center items-center bg-white rounded-full cursor-pointer' onClick={() => addLike(item._id)} >
                                                 <div className='bg-zinc-500 rounded-3xl w-10 flex items-center justify-center h-10'>
@@ -126,6 +126,9 @@ function Gallery() {
 
                                         <h3 className='text-xl font-semibold my-2'>{item.name}</h3>
                                         <p className='text-sm'>{item.description}</p>
+                                        {
+                                            item?.link && <button className='text-center font-semibold text-sm bg-amber-500 rounded-2xl px-5 py-2 border-2 border-black mt-2' onClick={() => window.open(item?.link)}>Open</button>
+                                        }
                                     </div>
                                 </>
                             ))
@@ -133,19 +136,18 @@ function Gallery() {
                         {active === "video" &&
                             video.map((item: any, index: any) => (
                                 <>
-                                    <div className="galery-card w-[86%] flex flex-col justify-center items-center bg-white shadow-lg p-5 rounded-xl my-2 border-2  border-black" key={index}>
+                                    <div className="galery-card w-[86%] flex flex-col justify-center items-center bg-white shadow-lg p-5 rounded-xl my-2 border-2  border-black" key={index} onClick={() => item?.link && window.open(item?.link)}>
                                         <div className="gallery-image w-[260px] h-[320px] relative" style={{ backgroundImage: `url(${item.image})`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
                                             <div className='text-xl absolute bottom-2 right-3 w-10 h-10 flex justify-center items-center bg-white rounded-full cursor-pointer' onClick={() => addLike(item._id)} >
-                                                <div className='bg-zinc-500 rounded-3xl w-10 flex items-center justify-center h-10'>
-
-
-                                                    <FaHeart size={18} className={likes?.find((like: any) => like._id === item._id) ? `text-red-500` : `text-white`} />
-                                                </div>
+                                            
                                             </div>
                                         </div>
 
                                         <h3 className='text-xl font-semibold my-2'>{item.name}</h3>
                                         <p className='text-sm'>{item.description}</p>
+                                        {
+                                            item?.link && <button className='text-center font-semibold text-sm bg-amber-500 rounded-2xl px-5 py-2 border-2 border-black mt-2' onClick={() => window.open(item?.link)}>Open</button>
+                                        }
                                     </div>
                                 </>
                             ))
@@ -153,19 +155,18 @@ function Gallery() {
                         {active === "reels" &&
                             reels.map((item: any, index: any) => (
                                 <>
-                                    <div className="galery-card w-[86%] flex flex-col justify-center items-center bg-white shadow-lg p-5 rounded-xl my-2 border-2  border-black" key={index}>
+                                    <div className="galery-card w-[86%] flex flex-col justify-center items-center bg-white shadow-lg p-5 rounded-xl my-2 border-2  border-black" key={index} onClick={() => item?.link && window.open(item?.link)}>
                                         <div className="gallery-image w-[260px] h-[320px] relative" style={{ backgroundImage: `url(${item.image})`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
                                             <div className='text-xl absolute bottom-2 right-3 w-10 h-10 flex justify-center items-center bg-white rounded-full cursor-pointer' onClick={() => addLike(item._id)} >
-                                                <div className='bg-zinc-500 rounded-3xl w-10 flex items-center justify-center h-10'>
-
-
-                                                    <FaHeart size={18} className={likes?.find((like: any) => like._id === item._id) ? `text-red-500` : `text-white`} />
-                                                </div>
+                                               
                                             </div>
                                         </div>
 
                                         <h3 className='text-xl font-semibold my-2'>{item.name}</h3>
                                         <p className='text-sm'>{item.description}</p>
+                                        {
+                                            item?.link && <button className='text-center font-semibold text-sm bg-amber-500 rounded-2xl px-5 py-2 border-2 border-black mt-2' onClick={() => window.open(item?.link)}>Open</button>
+                                        }
                                     </div>
                                 </>
                             ))
@@ -173,19 +174,19 @@ function Gallery() {
                         {active === "memes" &&
                             memes.map((item: any, index: any) => (
                                 <>
-                                    <div className="galery-card w-[86%] flex flex-col justify-center items-center bg-white shadow-lg p-5 rounded-xl my-2 border-2  border-black" key={index}>
+                                <div className="galery-card w-[86%] flex flex-col justify-center items-center bg-white shadow-lg p-5 rounded-xl my-2 border-2  border-black" key={index} onClick={() => item?.link && window.open(item?.link)}
+>
                                         <div className="gallery-image w-[260px] h-[320px] relative" style={{ backgroundImage: `url(${item.image})`, backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat" }}>
                                             <div className='text-xl absolute bottom-2 right-3 w-10 h-10 flex justify-center items-center bg-white rounded-full cursor-pointer' onClick={() => addLike(item._id)} >
-                                                <div className='bg-zinc-500 rounded-3xl w-10 flex items-center justify-center h-10'>
-
-
-                                                    <FaHeart size={18} className={likes?.find((like: any) => like._id === item._id) ? `text-red-500` : `text-white`} />
-                                                </div>
+                                               
                                             </div>
                                         </div>
 
                                         <h3 className='text-xl font-semibold my-2'>{item.name}</h3>
                                         <p className='text-sm'>{item.description}</p>
+                                        {
+                                            item?.link && <button className='text-center font-semibold text-sm bg-amber-500 rounded-2xl px-5 py-2 border-2 border-black mt-2' onClick={() => window.open(item?.link)}>Open</button>
+                                        }
                                     </div>
                                 </>
                             ))

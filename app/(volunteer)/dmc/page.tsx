@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import SERVER_URL from "@/config/SERVER_URL";
 import VOLUNTEER_URL from "@/config/VOLUNTEER_URL";
+import Loading from "@/components/Loading";
 
 function Dmc() {
   const router = useRouter();
+  const [loading, setLoading] = React.useState(true);
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       router.push("/login");
@@ -35,6 +37,7 @@ function Dmc() {
           })
           .then((response) => {
             localStorage.setItem("volunteer-token", response.data.token);
+            setLoading(false);
           })
           .catch((err) => {
             console.log(err);
@@ -45,7 +48,9 @@ function Dmc() {
         localStorage.removeItem("token");
       });
   }, []);
-
+  if(loading){
+    return <Loading/>
+  }
   return (
     <MobileContainer>
       <div className="w-full h-full bg-[#F1F4FF] flex flex-col items-center relative">

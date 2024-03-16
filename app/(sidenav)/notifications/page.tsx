@@ -35,14 +35,14 @@ function Notification() {
     return (
         <>
             <MobileContainer>
-                <div className="Notification-container w-full min-h-screen  flex flex-col justify-start items-center relative" style={{ backgroundImage: "url('images/backimg.jpeg')", backgroundSize: "cover" }}>
-                    <MdArrowBackIosNew className='text-xl cursor-pointer absolute top-5 left-5 top-text' onClick={() => router.back()} />
+                <div className="Notification-container w-full min-h-screen  flex flex-col justify-start items-center relative bg-blue-50">
+                    <MdArrowBackIosNew className='text-xl cursor-pointer absolute top-5 left-5 top-text' onClick={() => router.back()} style={{ color: "black" }}/>
                     <h1 className='text-black text-2xl font-bold text-center my-7 top-text'>Notification</h1>
                     <div className='w-80 flex flex-col justify-center items-center pt-1 rounded-md  pb-16'>
                         {
                             Notification.map((item: any, index: any) => (
                                 <>
-                                    <div className="Notification-card w-80 flex gap-2 justify-center items-center bg-gradient-to-r from-orange-100 to-green-100 shadow-lg p-3 rounded-xl my-2" key={index}>
+                                    <div className="Notification-card w-80 flex flex-col gap-2 justify-center items-center bg-gradient-to-r from-orange-100/50 to-green-100/50 shadow-lg p-3 rounded-xl my-2" key={index}>
                                         {
                                             item.image&&  <img src={item.image} className='w-16 h-16 rounded-full' alt="" />
                                         }

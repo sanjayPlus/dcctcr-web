@@ -261,7 +261,7 @@ function Home() {
               </div>
 
               <div className="gandi-div">
-                <img className="gandi-img" src="/Group.jpg" alt="" />
+                <img className="gandi-img" src="/images/home-hero.png" alt="" />
               </div>
 
               <div className="article p-3 ">
@@ -318,7 +318,7 @@ function Home() {
           <div className="social-link-container flex justify-center w-full ">
             <div className="w-80 px-4  flex justify-between items-center rounded-xl mb-2  bg-white">
               <div>
-                <Link href="https://www.facebook.com/DCCThrissurOfficial/">
+                <Link href="https://www.facebook.com/DCCThrissurOfficial/" target="_blank">
                   <FaFacebook
                     className="fill-blue-600 gap-y-3 mt-1 mb-1 "
                     size={35}
@@ -326,7 +326,7 @@ function Home() {
                 </Link>
               </div>
               <div>
-                <Link href="https://www.instagram.com/dcc_thrissur_/">
+                <Link href="https://www.instagram.com/dcc_thrissur_/" target="_blank">
                   <img
                     src="/icons/instagram.png"
                     alt=""
@@ -335,7 +335,7 @@ function Home() {
                 </Link>
               </div>
               <div>
-                <Link href="https://www.youtube.com/channel/UCyi2T6uv1x7HWMqUmAHGUDg">
+                <Link href="https://www.youtube.com/channel/UCyi2T6uv1x7HWMqUmAHGUDg" target="_blank">
                   <img
                     src="/icons/youtube.png"
                     alt=""
@@ -344,7 +344,7 @@ function Home() {
                 </Link>
               </div>
               <div>
-                <Link href="https://wa.me/918281749650">
+                <Link href="https://wa.me/918281749650" target="_blank">
                   <IoLogoWhatsapp
                     className="fill-green-500 gap-y-3 mb-1"
                     size={34}
@@ -352,7 +352,7 @@ function Home() {
                 </Link>
               </div>
               <div>
-              <Link href="tel:+918281749650">
+              <Link href="tel:+918281749650" target="_blank">
                 <img
                   src="/icons/customer-care.png"
                   alt=""

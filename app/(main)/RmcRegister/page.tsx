@@ -15,6 +15,7 @@ import { FaPhoneAlt } from "react-icons/fa";
 import toast from "react-hot-toast";
 import SERVER_URL from "@/config/SERVER_URL";
 import VOLUNTEER_URL from "@/config/VOLUNTEER_URL";
+import Loading from "@/components/Loading";
 
 // import moment from 'moment';
 // import './events.css'
@@ -38,6 +39,7 @@ function Rmc() {
   const [userData, setUserData] = useState<any>({});
   const [power, setPower] = useState("");
   const [showMessage, setShowMessage] = useState(true);
+  const [loading, setLoading] = useState(true);
   const router = useRouter();
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -61,6 +63,7 @@ function Rmc() {
             setUserData(response.data);
             setDistrict(response.data.district);
             setConstituency(response.data.assembly);
+            setLoading(false)
             if (response.data.volunteer.applied) {
               setShowMessage(false);
             }
@@ -165,6 +168,9 @@ function Rmc() {
         toast.error("Already Registered");
       });
   };
+  if(loading){
+    return <Loading/>
+  }
   return (
     <MobileContainer>
       <div

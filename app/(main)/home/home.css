@@ -79,13 +79,13 @@ left: 2%;
 .gandi-div{
     position: absolute;
     top: 30%;
-    left: 30%;
+    left: 26%;
 }
 
 
 .gandi-img{
     width: 200px;
-    height: 200px;
+    object-fit: cover;
 }
 
 

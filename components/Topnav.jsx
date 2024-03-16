@@ -126,6 +126,7 @@ function Topnav() {
                 <div onClick={() => {
                     localStorage.removeItem("token");
                     router.push("/login");
+                    localStorage.removeItem("volunteer-token");
                 }} className="nav-items cursor-pointer flex flex-row justify-start items-center pl-2 gap-x-3 mt-4 border-b border-b-gray-400 pb-3 ">
                     <IoIosLogOut size={23} />
                     <p className='m-0' style={{ userSelect: "none" }}>Log Out</p>
