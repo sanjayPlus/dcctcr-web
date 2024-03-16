@@ -227,7 +227,7 @@ function EditProfile() {
                             }
 
                             {
-                                assemblyList.length > 0 && (
+                                assembly && (
                                     <>
                                         <div className='w-full mx-5 px-5'>
                                             <label htmlFor="panchayath" className='flex pl-10 text-black'>

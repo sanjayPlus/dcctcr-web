@@ -47,6 +47,12 @@ function Register() {
   };
 
   const handleRadioChange = (event: any) => {
+    if(constituencyList.length===0){
+        return toast.error("Please Select Consituency First")
+    }
+    if(assemblyList.length===0){
+        return toast.error("Please Select Assembly First")
+    }
     setLocalSelect(event.target.value);
     axios
       .get(
@@ -283,6 +289,7 @@ function Register() {
                   </select>
                 </>
               )}
+              
               {assemblyList.length > 0 && (
                 <>
                   <select
@@ -304,7 +311,7 @@ function Register() {
                 </>
               )}
 
-              {assemblyList.length > 0 && (
+              {assembly && (
                 <>
                   <div className="w-full mx-5 px-5">
                     <label
