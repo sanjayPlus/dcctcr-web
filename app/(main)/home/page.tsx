@@ -318,7 +318,10 @@ function Home() {
           <div className="social-link-container flex justify-center w-full ">
             <div className="w-80 px-4  flex justify-between items-center rounded-xl mb-2  bg-white">
               <div>
-                <Link href="https://www.facebook.com/DCCThrissurOfficial/" target="_blank">
+                <Link
+                  href="https://www.facebook.com/DCCThrissurOfficial/"
+                  target="_blank"
+                >
                   <FaFacebook
                     className="fill-blue-600 gap-y-3 mt-1 mb-1 "
                     size={35}
@@ -326,7 +329,10 @@ function Home() {
                 </Link>
               </div>
               <div>
-                <Link href="https://www.instagram.com/dcc_thrissur_/" target="_blank">
+                <Link
+                  href="https://www.instagram.com/dcc_thrissur_/"
+                  target="_blank"
+                >
                   <img
                     src="/icons/instagram.png"
                     alt=""
@@ -335,7 +341,10 @@ function Home() {
                 </Link>
               </div>
               <div>
-                <Link href="https://www.youtube.com/channel/UCyi2T6uv1x7HWMqUmAHGUDg" target="_blank">
+                <Link
+                  href="https://www.youtube.com/channel/UCyi2T6uv1x7HWMqUmAHGUDg"
+                  target="_blank"
+                >
                   <img
                     src="/icons/youtube.png"
                     alt=""
@@ -352,12 +361,12 @@ function Home() {
                 </Link>
               </div>
               <div>
-              <Link href="tel:+918281749650" target="_blank">
-                <img
-                  src="/icons/customer-care.png"
-                  alt=""
-                  className="w-10 p-2 mr-1 ml-1"
-                />
+                <Link href="tel:+918281749650" target="_blank">
+                  <img
+                    src="/icons/customer-care.png"
+                    alt=""
+                    className="w-10 p-2 mr-1 ml-1"
+                  />
                 </Link>
               </div>
             </div>
@@ -371,7 +380,10 @@ function Home() {
           </div>
 
           <div
-            onClick={() => router.push("/RmcRegister")}
+            onClick={() => {
+              localStorage.removeItem("volunteer-token");
+              router.push("/RmcRegister");
+            }}
             className="social-link-container w-full px-4 my-2 cursor-pointer"
           >
             <img src="/images/rmclist.jpg" alt="" />

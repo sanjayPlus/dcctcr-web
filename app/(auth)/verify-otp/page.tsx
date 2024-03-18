@@ -7,6 +7,7 @@ import MobileContainer from "@/components/MobileContainer";
 import OTPInput from "@/components/OTPInput";
 import SERVER_URL from "@/config/SERVER_URL";
 import { useRouter } from "next/navigation";
+import { MdArrowBackIosNew } from "react-icons/md";
 
 function VerifyOTP() {
   const router = useRouter();
@@ -97,12 +98,19 @@ function VerifyOTP() {
   return (
     <MobileContainer>
       <div
-        className="w-full h-full flex flex-col"
+        className="w-full h-full flex flex-col relative"
         style={{
           backgroundImage: "url('/images/bg_main.jpg')",
           backgroundSize: "cover",
         }}
       >
+        <MdArrowBackIosNew
+          className="text-lg cursor-pointer absolute top-6 left-5 text-black z-50"
+          onClick={() => {
+            localStorage.removeItem("token");
+            router.push("/login");
+          }}
+        />
         <div className="w-full h-20 flex justify-center items-center mt-28">
           <img src="/images/imagecontri.png" alt="" className="w-24" />
         </div>
