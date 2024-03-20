@@ -82,7 +82,7 @@ function IdCreation() {
 
     axios
       .get(
-        `${VOLUNTEER_URL}/admin/state-districtV1?district=${district}&constituency=${constituency}`,
+        `${VOLUNTEER_URL}/admin/state-districtV1?district=${district}&constituency=${selectedConstitunecy}`,
         {
           // Use the updated district value
           headers: { "x-access-token": localStorage.getItem("token") },
