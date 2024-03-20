@@ -138,6 +138,10 @@ function Rmc() {
       toast.error("Please Select Mandalam");
       return;
     }
+    if(!ward){
+      toast.error("Please Select Ward");
+      return;
+    }
     const token = localStorage.getItem("token");
     axios
       .post(
