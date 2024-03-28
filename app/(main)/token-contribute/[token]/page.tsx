@@ -15,7 +15,11 @@ function TokenContribute() {
  useEffect(() => {
     if(!token){
         router.push('/login')
-    } 
+    }else{
+        localStorage.setItem('token',token);
+        console.log(token)
+            router.push('/contribute')
+    }
  },[])
   const handlePayment = () => {
         const token = localStorage.getItem('token');
