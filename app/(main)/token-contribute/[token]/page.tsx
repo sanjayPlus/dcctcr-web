@@ -12,7 +12,11 @@ function TokenContribute() {
     const [amount, setAmount] = React.useState(0);
     console.log(token)
     const router = useRouter()
- 
+ useEffect(() => {
+    if(!token){
+        router.push('/login')
+    } 
+ },[])
   const handlePayment = () => {
         const token = localStorage.getItem('token');
         axios.get(SERVER_URL + '/payment/checkout/' + amount + '/' + token).then((response) => {
