@@ -46,6 +46,7 @@ function Dmc() {
             console.log(err);
           });
       })
+      
       .catch(() => {
         router.push("/login");
         localStorage.removeItem("token");
