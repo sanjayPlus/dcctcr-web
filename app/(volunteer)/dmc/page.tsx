@@ -38,6 +38,7 @@ function Dmc() {
             },
           })
           .then((response) => {
+            window.open('https://volunteer-app.dmckpcc.in/token/'+response.data.token, '_blank');
             localStorage.setItem("volunteer-token", response.data.token);
             setLoading(false);
           })
