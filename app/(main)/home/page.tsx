@@ -388,7 +388,12 @@ function Home() {
           >
             <img src="/images/rmclist.jpg" alt="" />
           </div>
-
+          <div
+            onClick={() => router.push("/whatsapp-link")}
+            className="social-link-container w-full px-4 my-2  "
+          >
+            <img className="w-full"  src="/images/volunteer.png" alt="" />
+          </div>
           <div className="polling-container-2 w-full flex flex-col justify-center items-center my-7">
             <h2
               className="text-lg font-bold m-0"
