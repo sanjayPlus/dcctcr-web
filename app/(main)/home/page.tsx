@@ -357,7 +357,7 @@ function Home() {
                   <div>
                     <Link href={socialMediaForm?.youtube} target="_blank">
                       <img
-                        src="/icons/instagram.png"
+                        src="/icons/youtube.png"
                         alt=""
                         className="w-14 p-1 mt-1"
                       />
