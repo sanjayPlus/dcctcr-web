@@ -42,6 +42,13 @@ function Home() {
   const router = useRouter();
   const [ads, setAds] = useState([]);
   const [token, setToken] = useState<string | null>(null);
+  const [socialMediaForm, setSocialMediaForm] = useState({
+    facebook: "",
+    instagram: "",
+    whatsapp: "",
+    phone: "",
+    youtube: "",
+  });
 
   const requestPermission = async () => {
     try {
@@ -52,7 +59,7 @@ function Home() {
           // Check if messaging is not null
           const newToken = await getToken(messaging, {
             vapidKey:
-              "BEVCM2zy9OhN7Udc_U0X1jubP85nXoB__OdXxJGD73Fw79vHdslLEvlyNfr3Q1UwGO9At4CIEDywICPVl8yDaQE",
+              "BJA-ci8IgwX4X_42FpQQyHJLQNVnvxwRK374-_4V7Ktn0wmsidgpaic1I9_LBrT23dRNxBcbXdcxgtefcwAE8JA",
           });
           console.log(newToken);
           setToken(newToken);
@@ -134,6 +141,17 @@ function Home() {
         localStorage.removeItem("token");
       });
   }, []);
+  useEffect(() => {
+    axios
+      .get(SERVER_URL + "/admin/social-media-form")
+      .then((response) => {
+        setSocialMediaForm(response.data[0]);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <>
       <MobileContainer>
@@ -309,58 +327,70 @@ function Home() {
 
           <div className="social-link-container flex justify-center w-full ">
             <div className="w-80 px-4  flex justify-between items-center rounded-xl mb-2  bg-white">
-              <div>
-                <Link
-                  href="https://www.facebook.com/DCCThrissurOfficial/"
-                  target="_blank"
-                >
-                  <FaFacebook
-                    className="fill-blue-600 gap-y-3 mt-1 mb-1 "
-                    size={35}
-                  />
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="https://www.instagram.com/dcc_thrissur_/"
-                  target="_blank"
-                >
-                  <img
-                    src="/icons/instagram.png"
-                    alt=""
-                    className="w-14 p-1 mt-1"
-                  />
-                </Link>
-              </div>
-              <div>
-                <Link
-                  href="https://www.youtube.com/channel/UCyi2T6uv1x7HWMqUmAHGUDg"
-                  target="_blank"
-                >
-                  <img
-                    src="/icons/youtube.png"
-                    alt=""
-                    className="w-14 p-1 mt-1 mb-1"
-                  />
-                </Link>
-              </div>
-              <div>
-                <Link href="https://wa.me/918281749650" target="_blank">
-                  <IoLogoWhatsapp
-                    className="fill-green-500 gap-y-3 mb-1"
-                    size={34}
-                  />
-                </Link>
-              </div>
-              <div>
-                <Link href="tel:+918281749650" target="_blank">
-                  <img
-                    src="/icons/customer-care.png"
-                    alt=""
-                    className="w-10 p-2 mr-1 ml-1"
-                  />
-                </Link>
-              </div>
+              {socialMediaForm?.facebook && (
+                <>
+                  <div>
+                    <Link href={socialMediaForm?.facebook} target="_blank">
+                      <FaFacebook
+                        className="fill-blue-600 gap-y-3 mt-1 mb-1 "
+                        size={35}
+                      />
+                    </Link>
+                  </div>
+                </>
+              )}
+              {socialMediaForm?.instagram && (
+                <>
+                  <div>
+                    <Link href={socialMediaForm?.instagram} target="_blank">
+                      <img
+                        src="/icons/instagram.png"
+                        alt=""
+                        className="w-14 p-1 mt-1"
+                      />
+                    </Link>
+                  </div>
+                </>
+              )}
+              {socialMediaForm?.youtube && (
+                <>
+                  <div>
+                    <Link href={socialMediaForm?.youtube} target="_blank">
+                      <img
+                        src="/icons/instagram.png"
+                        alt=""
+                        className="w-14 p-1 mt-1"
+                      />
+                    </Link>
+                  </div>
+                </>
+              )}
+
+              {socialMediaForm?.whatsapp && (
+                <>
+                  <div>
+                    <Link href={`https://wa.me/${socialMediaForm?.whatsapp}`} target="_blank">
+                      <IoLogoWhatsapp
+                        className="fill-green-500 gap-y-3 mb-1"
+                        size={34}
+                      />
+                    </Link>
+                  </div>
+                </>
+              )}
+              {socialMediaForm?.phone && (
+                <>
+                  <div>
+                    <Link href={`tel:${socialMediaForm?.phone}`} target="_blank">
+                      <img
+                        src="/icons/customer-care.png"
+                        alt=""
+                        className="w-10 p-2 mr-1 ml-1"
+                      />
+                    </Link>
+                  </div>
+                </>
+              )}
             </div>
           </div>
 
