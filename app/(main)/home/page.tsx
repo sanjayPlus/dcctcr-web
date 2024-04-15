@@ -48,6 +48,7 @@ function Home() {
     whatsapp: "",
     phone: "",
     youtube: "",
+    contact:"",
   });
 
   const requestPermission = async () => {
@@ -59,7 +60,7 @@ function Home() {
           // Check if messaging is not null
           const newToken = await getToken(messaging, {
             vapidKey:
-              "BJA-ci8IgwX4X_42FpQQyHJLQNVnvxwRK374-_4V7Ktn0wmsidgpaic1I9_LBrT23dRNxBcbXdcxgtefcwAE8JA",
+              "BEVCM2zy9OhN7Udc_U0X1jubP85nXoB__OdXxJGD73Fw79vHdslLEvlyNfr3Q1UwGO9At4CIEDywICPVl8yDaQE",
           });
           console.log(newToken);
           setToken(newToken);
@@ -369,19 +370,20 @@ function Home() {
               {socialMediaForm?.whatsapp && (
                 <>
                   <div>
-                    <Link href={`https://wa.me/${socialMediaForm?.whatsapp}`} target="_blank">
+                  
+                    <p onClick={()=>window.open(`${socialMediaForm?.whatsapp}`, '_blank ','noopener,noreferrer')}  >
                       <IoLogoWhatsapp
                         className="fill-green-500 gap-y-3 mb-1"
                         size={34}
                       />
-                    </Link>
+                    </p>
                   </div>
                 </>
               )}
-              {socialMediaForm?.phone && (
+              {socialMediaForm?.contact && (
                 <>
                   <div>
-                    <Link href={`tel:${socialMediaForm?.phone}`} target="_blank">
+                    <Link href={`tel:${socialMediaForm?.contact}`} target="_blank">
                       <img
                         src="/icons/customer-care.png"
                         alt=""
