@@ -268,8 +268,7 @@ function Home() {
                 <div
                   className="textFive flex items-center justify-center w-12 h-12 rounded-full  bg-[#082282]"
                   onClick={() =>
-                    window.open("https://dccthrissur.com/leganal.php")
-                  }
+                    router.push("/article")}
                 >
                   <MdOutlineArticle className="icon" />
                   <span className="textFive-span">Articles</span>
