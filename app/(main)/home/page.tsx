@@ -237,9 +237,7 @@ function Home() {
               <div>
                 <div
                   className="textThree flex items-center justify-center w-12 h-12 rounded-full bg-[#082282]"
-                  onClick={() =>
-                    router.push("/representatives")
-                  }
+                  onClick={() => router.push("/representatives")}
                 >
                   <MdGroups className="icon" />
                   <span className="textThree-span">
@@ -265,8 +263,7 @@ function Home() {
               <div className="article p-3 ">
                 <div
                   className="textFive flex items-center justify-center w-12 h-12 rounded-full  bg-[#082282]"
-                  onClick={() =>
-                    router.push("/article")}
+                  onClick={() => router.push("/article")}
                 >
                   <MdOutlineArticle className="icon" />
                   <span className="textFive-span">Articles</span>
@@ -288,9 +285,7 @@ function Home() {
               <div>
                 <div
                   className="textSeven flex items-center justify-center w-12 h-12 rounded-full bg-[#082282]"
-                  onClick={() =>
-                    window.open("https://soundcloud.com/keralapcc")
-                  }
+                  onClick={() => router.push("/music")}
                 >
                   <IoMdMusicalNote className="icon" />
                   <span className="textSeven-span">Music</span>
@@ -389,7 +384,7 @@ function Home() {
             onClick={() => router.push("/whatsapp-link")}
             className="social-link-container w-full px-4 my-2  "
           >
-            <img className="w-full"  src="/images/volunteer.png" alt="" />
+            <img className="w-full" src="/images/volunteer.png" alt="" />
           </div>
           <div className="polling-container-2 w-full flex flex-col justify-center items-center my-7">
             <h2

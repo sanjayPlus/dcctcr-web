@@ -44,6 +44,7 @@ function Slogan() {
                             slogan.map((item: any, index: any) => (
                                 <>
                                     <div className="slogan-card w-[86%] flex gap-2 justify-center items-center bg-gradient-to-r from-orange-100 to-green-100 shadow-lg p-3 rounded-xl my-2 " key={index}>
+                                        <h1 className='text-lg font-semibold'>{item.title}</h1>
                                         <p className='text-sm font-semibold my-2'>{item.slogan}</p>
                                     </div>
                                 </>
