@@ -24,7 +24,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="description" content="dcc thrissur" />
-            
+       
       </head>
       <body className={inter.className}>{children}</body>
     </html>

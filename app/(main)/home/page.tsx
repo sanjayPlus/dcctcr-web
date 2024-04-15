@@ -238,14 +238,12 @@ function Home() {
                 <div
                   className="textThree flex items-center justify-center w-12 h-12 rounded-full bg-[#082282]"
                   onClick={() =>
-                    window.open(
-                      "https://dccthrissur.com/janaprathinithigal.php"
-                    )
+                    router.push("/representatives")
                   }
                 >
                   <MdGroups className="icon" />
                   <span className="textThree-span">
-                    peoples Representatives
+                    Peoples Representatives
                   </span>
                 </div>
               </div>
