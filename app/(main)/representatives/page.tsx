@@ -6,6 +6,7 @@ import image1 from './assets/navasankalp.png'
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import './respresentatives.css'
+import SERVER_URL from '@/config/SERVER_URL';
 
 function Representatives() {
     const [categorydetails,setcategorydetails]=useState<any>([])
@@ -13,7 +14,7 @@ const [alldetails,setalldetails]=useState<any>([])
 const[name,setname]=useState<string>("")
 
 const getcategory=async()=>{
-  const res=await axios.get(`https://dcctcr-backend.plusitpark.com/api/admin/category-representative`)
+  const res=await axios.get(`${SERVER_URL}/admin/category-representative`)
   setcategorydetails(res.data)
 }
 
@@ -21,7 +22,7 @@ const getdetails=async(categoryname:any)=>
 {
   console.log(categoryname);
   setname(categoryname)
-  const res=await axios.get(`https://dcctcr-backend.plusitpark.com/api/admin/representatives?category=${categoryname}`)
+  const res=await axios.get(`${SERVER_URL}/admin/representatives?category=${categoryname}`)
   setalldetails(res.data[0].representatives);
 }
 
@@ -40,7 +41,8 @@ useEffect(()=>
     <div className="mt-4 d-flex flex-column">
       <h4>People's Representatives</h4>
       <div className="mt-4">
-        {categorydetails && categorydetails.map((data:any)=>(<button
+        {categorydetails && categorydetails.map((data:any,index:any)=>(<button
+            key={index}
           className="btn btn-white border border-teritiary w-100 mb-3" type='button' onClick={()=>getdetails(data.category)}
         >{data.category}
         </button>))}
